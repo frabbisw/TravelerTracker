@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/desLogin"
             android:text="Login"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/custom4"
             android:background="@android:color/transparent"
             style="?android:attr/borderlessButtonStyle"
             android:layout_marginLeft="37dp"
@@ -27,14 +27,13 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:onClick="showLogin"
             android:textSize="20dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/enReg"
             android:text="Registration"
-            android:textColor="@color/custom4"
+            android:textColor="@color/colorAccent"
             android:background="@android:color/transparent"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="20dp"
@@ -42,7 +41,8 @@
             android:layout_marginStart="44dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/desLogin"
-            android:layout_toEndOf="@+id/desLogin" />
+            android:layout_toEndOf="@+id/desLogin"
+            android:onClick="showReg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
