@@ -8,6 +8,13 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
+/*
+* hey Rabbi you cannot work alone, the boss is here :/
+*
+* */
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
