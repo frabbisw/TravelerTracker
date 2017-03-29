@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/desLogin"
             android:text="Login"
-            android:textColor="@color/custom4"
+            android:textColor="@color/colorAccent"
             android:background="@android:color/transparent"
             style="?android:attr/borderlessButtonStyle"
             android:layout_marginLeft="37dp"
@@ -27,21 +27,22 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:onClick="showLogin"
             android:textSize="20dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/enReg"
             android:text="Registration"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/custom4"
             android:background="@android:color/transparent"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_marginRight="37dp"
-            android:layout_marginEnd="37dp"
             android:textSize="20dp"
-            android:layout_above="@+id/loginFields"
-            android:layout_alignRight="@+id/loginFields"
-            android:layout_alignEnd="@+id/loginFields" />
+            android:layout_marginLeft="44dp"
+            android:layout_marginStart="44dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/desLogin"
+            android:layout_toEndOf="@+id/desLogin" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,12 +51,12 @@
             android:background="@drawable/button"
             android:padding="10dp"
             android:id="@+id/loginFields"
+            android:layout_marginTop="36dp"
             android:layout_below="@+id/desLogin"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="34dp">
+            android:layout_alignParentStart="true">
 
-            <AutoCompleteTextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="User Id"
@@ -63,7 +64,7 @@
                 android:maxLines="1"
                 android:id="@+id/userId"
                 android:background="@drawable/edittext"
-                android:drawableLeft=""
+                android:drawableLeft="@drawable/user_icon"
                 android:textSize="25dp"
                 android:textColor="@color/text"
                 android:layout_margin="10dp"/>
@@ -74,10 +75,11 @@
                 android:hint="Password"
                 android:id="@+id/password"
                 android:inputType="textPassword"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:layout_below="@+id/userId"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:drawableLeft="@drawable/pass_icon"
                 android:background="@drawable/edittext"
                 android:textSize="25dp"
                 android:textColor="@color/text"
@@ -85,15 +87,17 @@
         </LinearLayout>
 
         <Button
+            android:text="Ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
-            android:textColor="@color/white"
-            android:background="@drawable/button"
-            android:textSize="25dp"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/desLogin"
-            android:layout_toEndOf="@+id/desLogin" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13dp"
+            android:id="@+id/loginOk"
+            android:background="@drawable/button"
+            style="?android:borderlessButtonStyle"
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
@@ -116,6 +120,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:onClick="showLogin"
             android:textSize="20dp"/>
         <Button
             android:layout_width="wrap_content"
@@ -126,11 +131,11 @@
             android:background="@android:color/transparent"
             style="?android:attr/borderlessButtonStyle"
             android:textSize="20dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginStart="44dp"
             android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/button"
-            android:layout_alignStart="@+id/button"
-            android:layout_marginLeft="51dp"
-            android:layout_marginStart="51dp" />
+            android:layout_toRightOf="@+id/enLogin"
+            android:layout_toEndOf="@+id/enLogin" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,19 +144,21 @@
             android:background="@drawable/button"
             android:padding="10dp"
             android:id="@+id/regFields"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="36dp"
+            android:layout_below="@+id/enLogin"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
-            <AutoCompleteTextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="User Id"
                 android:inputType="text"
-                android:singleLine="true"
+                android:drawableLeft="@drawable/user_icon"
                 android:id="@+id/newUserId"
                 android:background="@drawable/edittext"
                 android:textSize="25dp"
+                android:maxLines="1"
                 android:textColor="@color/text"
                 android:layout_margin="10dp"/>
             <EditText
@@ -160,7 +167,8 @@
                 android:id="@+id/name"
                 android:inputType="text"
                 android:hint="Full Name"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/name_icon"
                 android:textColor="@color/text"
                 android:layout_margin="10dp"
                 android:background="@drawable/edittext"
@@ -174,7 +182,8 @@
                 android:hint="Password"
                 android:id="@+id/newPassword"
                 android:inputType="textPassword"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/pass_icon"
                 android:layout_below="@+id/name"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -189,7 +198,8 @@
                 android:hint="Confirm Password"
                 android:id="@+id/conPassword"
                 android:inputType="textPassword"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/pass_icon"
                 android:layout_below="@+id/newPassword"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -201,16 +211,17 @@
         </LinearLayout>
 
         <Button
+            android:text="Ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
-            android:textColor="@color/white"
-            android:background="@drawable/button"
-            android:textSize="25dp"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/enLogin"
-            android:layout_toEndOf="@+id/enLogin"
-            android:id="@+id/button" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13dp"
+            android:id="@+id/regOk"
+            android:background="@drawable/button"
+            style="?android:borderlessButtonStyle"
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
