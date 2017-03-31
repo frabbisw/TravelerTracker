@@ -9,19 +9,19 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 /*
-* hey Rabbi you cannot work alone, the boss is here :/
+* hey Rabbi you cannot work alone, imm is here :/
+*
+* hahaha
 *
 * */
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_main);
     }
-    public void showReg(View view)
+    /*public void showReg(View view)
     {
         RelativeLayout logRel = (RelativeLayout) findViewById(R.id.loginLayout);
         RelativeLayout regRel = (RelativeLayout) findViewById(R.id.regLayout);
@@ -49,4 +49,4 @@ public class MainActivity extends AppCompatActivity {
                 clearForm((ViewGroup)view);
         }
     }
-}
+*/}
