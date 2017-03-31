@@ -43,6 +43,7 @@
         android:orientation="vertical"
         android:textColor="@color/text"
         android:drawableLeft="@drawable/ic_lock_outline_24dp"
+
         />
 
     <Button
