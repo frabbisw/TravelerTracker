@@ -1,6 +1,5 @@
 package com.example.frabbi.meem;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.frabbi.meem.R;
 
 public class ActivityLogin extends AppCompatActivity {
 

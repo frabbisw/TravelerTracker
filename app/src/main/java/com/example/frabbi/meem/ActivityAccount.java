@@ -2,12 +2,15 @@ package com.example.frabbi.meem;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
-public class ActivityAccount extends AppCompatActivity {
+import static com.example.frabbi.meem.R.layout.activity_account;
+
+public class ActivityAccount extends BottomBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        getLayoutInflater().inflate(R.layout.activity_account, frameContent);
     }
 }
