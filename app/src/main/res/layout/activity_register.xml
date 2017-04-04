@@ -9,7 +9,7 @@
     >
 
     <EditText
-        android:id="@+id/userid"
+        android:id="@+id/newuserid"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="User ID"

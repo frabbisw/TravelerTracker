@@ -21,6 +21,7 @@
         />
 
     <EditText
+        android:id="@+id/userid"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="User ID"
@@ -34,6 +35,7 @@
         />
 
     <EditText
+        android:id="@+id/text_password"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="Password"

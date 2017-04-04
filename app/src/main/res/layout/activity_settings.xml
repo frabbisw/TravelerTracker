@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="32dp"
-    >
+    android:id="@+id/activity_settings">
+
 
     <EditText
         android:id="@+id/name"
@@ -35,55 +37,93 @@
         android:textColorHint="@color/text"
         />
 
-    <TextView
+
+    <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Set Check In Mode"
-        android:textSize="16sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text"
-        />
+        android:layout_marginTop="40dp"
+        >
 
-    <RadioButton
-        android:hint="Auto"
-        android:layout_height="20dp"
-        android:layout_width="80dp"
-        android:textColorLink="@color/white"
-        android:id="@+id/auto"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="0dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text"
-        />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Set Check In Mode"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            />
 
-    <RadioButton
-        android:hint="Manual"
-        android:layout_height="20dp"
-        android:layout_width="80dp"
-        android:id="@+id/manual"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text"
-        />
+
+        <RadioGroup
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            >
+
+        <RadioButton
+            android:hint="Auto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/white"
+            android:textColorLink="@color/white"
+            android:id="@+id/auto"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            />
+
+        <RadioButton
+            android:hint="Manual"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:buttonTint="@color/white"
+            android:id="@+id/manual"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            />
+
+        </RadioGroup>
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/interval"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:entries="@array/set_time_interval"
+            >
+
+        </Spinner>
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/viewProfile"
+        android:id="@+id/saveChange"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@color/loginbutton"
-        android:hint="View Profile"
+        android:hint="Save Change"
         android:textSize="16sp"
         android:layout_marginTop="50dp"
         android:textColorHint="@color/text"
         />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/loginbutton"
+        android:hint="Log Out"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        android:textColorHint="@color/text"
+        />
+
 
 </LinearLayout>

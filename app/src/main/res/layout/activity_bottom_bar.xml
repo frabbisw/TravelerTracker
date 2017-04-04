@@ -12,7 +12,6 @@
         android:weightSum="5"
         android:background="@color/loginbutton"
         android:orientation="horizontal"
-        android:layout_marginTop="455dp"
         android:id="@+id/bottom_layout"
         android:layout_alignParentBottom="true"
         >
@@ -40,7 +39,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="12dp"
-            android:src="@drawable/ic_home_white_24dp"
+            android:src="@drawable/ic_map_white_24dp"
             android:id="@+id/img_map"
             />
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,10 @@ public class ActivityLogin extends AppCompatActivity {
     private LinearLayout registerContent;
     private TextView createAccount;
     private Button loginBtn;
+    private Button register ;
+    private EditText usrid;
+    private EditText pswrd;
+
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
@@ -29,6 +34,12 @@ public class ActivityLogin extends AppCompatActivity {
                     break;
 
                 case R.id.btn_login_account:
+                    if(!isEmpty(usrid) && !isEmpty(pswrd)) {
+                        loginToAccount();
+                    }
+                    break;
+
+                case R.id.btn_register:
                     loginToAccount();
                     break;
             }
@@ -51,10 +62,23 @@ public class ActivityLogin extends AppCompatActivity {
 
         loginBtn = (Button) loginContent.findViewById(R.id.btn_login_account);
         loginBtn.setOnClickListener(clickListener);
+
+        register = (Button) loginContent.findViewById(R.id.btn_register);
+        register.setOnClickListener(clickListener);
+
+        usrid = (EditText) loginContent.findViewById(R.id.userid);
+        pswrd =  (EditText) loginContent.findViewById(R.id.userid);
+
     }
 
     protected void loginToAccount(){
         startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
         finish();
     }
+
+    protected boolean isEmpty(EditText text){
+        if(text.getText().toString().trim().length()>0) return false;
+        return true;
+    }
+
 }
