@@ -12,12 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.frabbi.meem.R;
-
-import org.w3c.dom.Text;
-
-import static com.example.frabbi.meem.R.id.text_password;
-
 public class ActivityLogin extends AppCompatActivity {
 
     private FrameLayout contentFrame;
@@ -25,18 +19,24 @@ public class ActivityLogin extends AppCompatActivity {
     private LinearLayout registerContent;
     private TextView createAccount;
     private Button loginBtn;
-    private Button register ;
-    private EditText usrid;
-    private EditText pswrd;
+    private Button register;
+    private EditText getuserid;
+    private EditText getpassword;
+    private EditText getnewuserid;
+    private EditText getnewpassword;
+    private EditText getname;
+    private EditText getconfirmation;
 
+    int currentState;
+    final int loginState = 1;
+    final int regState = 2;
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.text_create_account:
-                    contentFrame.removeAllViews();
-                    contentFrame.addView(registerContent);
+                    showRegPage();
                     break;
 
                 case R.id.btn_login_account:
@@ -44,7 +44,7 @@ public class ActivityLogin extends AppCompatActivity {
                     break;
 
                 case R.id.btn_register:
-                    loginToAccount();
+                    openAccount();
                     break;
             }
         }
@@ -56,10 +56,10 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_layout);
 
-        contentFrame = (FrameLayout)findViewById(R.id.content_frame);
+        contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         loginContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_login, contentFrame, false);
         registerContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_register, contentFrame, false);
-        contentFrame.addView(loginContent);
+        showLoginPage();
 
         createAccount = (TextView) loginContent.findViewById(R.id.text_create_account);
         createAccount.setOnClickListener(clickListener);
@@ -70,20 +70,74 @@ public class ActivityLogin extends AppCompatActivity {
         register = (Button) registerContent.findViewById(R.id.btn_register);
         register.setOnClickListener(clickListener);
 
-        usrid = (EditText) loginContent.findViewById(R.id.userid);
-        pswrd =  (EditText) loginContent.findViewById(R.id.text_password);
+        getuserid = (EditText) loginContent.findViewById(R.id.userid);
+        getpassword = (EditText) loginContent.findViewById(R.id.text_password);
+
+        getnewuserid = (EditText) registerContent.findViewById(R.id.newuserid);
+        getnewpassword = (EditText) registerContent.findViewById(R.id.newpassword);
+
+        getname = (EditText) registerContent.findViewById(R.id.name);
+        getconfirmation = (EditText) registerContent.findViewById(R.id.confirmpassword);
     }
 
-    protected void loginToAccount(){
-        if(usrid.getText().toString().isEmpty()) {
+    protected void loginToAccount() {
+        if (getuserid.getText().toString().isEmpty()) {
             Toast.makeText(this, "UserID required", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(pswrd.getText().toString().isEmpty()) {
+        if (getpassword.getText().toString().isEmpty()) {
             Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show();
             return;
         }
-        startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
+        startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
         finish();
+    }
+
+    protected void openAccount() {
+        if (getnewuserid.getText().toString().isEmpty()) {
+            Toast.makeText(this, "UserID required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (getname.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Profile Name required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (getnewpassword.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (getconfirmation.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Password confirmation required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!getconfirmation.getText().toString().equals(getnewpassword.getText().toString())) {
+            Toast.makeText(this, "Wrong Password. Try again", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
+        finish();
+    }
+
+    private void showRegPage(){
+        contentFrame.removeAllViews();
+        contentFrame.addView(registerContent);
+        currentState=regState;
+    }
+
+    private void showLoginPage(){
+        contentFrame.removeAllViews();
+        contentFrame.addView(loginContent);
+        currentState=loginState;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(currentState==loginState) super.onBackPressed();
+        else showLoginPage();
     }
 }

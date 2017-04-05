@@ -65,6 +65,10 @@ public class BottomBarActivity extends AppCompatActivity {
                     showMap();
                     break;
 
+                case R.id.img_profile:
+                    showAccount();
+                    break;
+
             }
         }
     };
@@ -85,6 +89,8 @@ public class BottomBarActivity extends AppCompatActivity {
         startActivity(new Intent(BottomBarActivity.this,MapActivity.class));
     }
 
-
+    protected void showAccount(){
+        startActivity(new Intent(BottomBarActivity.this,ActivityAccount.class));
+    }
 
 }

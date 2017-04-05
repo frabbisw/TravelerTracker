@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityAccount" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ActivityAccount" android:label="Profile"/>
+        <activity android:name=".SettingsActivity"  android:label="Settings"/>
         <activity android:name=".BottomBarActivity" />
-        <activity android:name=".CircleActivity" />
-        <activity android:name=".CheckInActivity" />
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".CircleActivity" android:label="Circle Creation"/>
+        <activity android:name=".CheckInActivity" android:label="Check In"/>
+        <activity android:name=".MapActivity" android:label="Map"></activity>
     </application>
 
 </manifest> <!-- android:label="@string/app_name" -->

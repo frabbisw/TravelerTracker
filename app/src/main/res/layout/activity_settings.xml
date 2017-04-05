@@ -11,7 +11,7 @@
 
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/editname"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="Edit Profile Name"
@@ -59,6 +59,7 @@
 
 
         <RadioGroup
+            android:id="@+id/mode"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             >
