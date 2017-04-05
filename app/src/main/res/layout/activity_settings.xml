@@ -93,12 +93,9 @@
         <Spinner
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/interval"
-            android:visibility="gone"
-            tools:visibility="visible"
+            android:id="@+id/time"
             android:entries="@array/set_time_interval"
             >
-
         </Spinner>
 
     </LinearLayout>

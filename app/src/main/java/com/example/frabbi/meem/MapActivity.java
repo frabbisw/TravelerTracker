@@ -9,6 +9,7 @@ public class MapActivity extends BottomBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_map, frameContent);
+
     }
 }
 

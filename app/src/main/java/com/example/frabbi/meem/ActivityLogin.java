@@ -10,7 +10,13 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.frabbi.meem.R;
+
+import org.w3c.dom.Text;
+
+import static com.example.frabbi.meem.R.id.text_password;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -61,24 +67,23 @@ public class ActivityLogin extends AppCompatActivity {
         loginBtn = (Button) loginContent.findViewById(R.id.btn_login_account);
         loginBtn.setOnClickListener(clickListener);
 
-        register = (Button) loginContent.findViewById(R.id.btn_register);
+        register = (Button) registerContent.findViewById(R.id.btn_register);
         register.setOnClickListener(clickListener);
 
         usrid = (EditText) loginContent.findViewById(R.id.userid);
         pswrd =  (EditText) loginContent.findViewById(R.id.text_password);
     }
 
-    protected boolean isEmpty(EditText text){
-        if(text.getText().toString().trim().length()>0) return false;
-        return true;
-    }
     protected void loginToAccount(){
-
-        if(!isEmpty(usrid) && !isEmpty(pswrd)) {
-            startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
+        if(usrid.getText().toString().isEmpty()) {
+            Toast.makeText(this, "UserID required", Toast.LENGTH_SHORT).show();
+            return;
         }
+        if(pswrd.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
         finish();
     }
-
-
 }
