@@ -34,9 +34,7 @@ public class ActivityLogin extends AppCompatActivity {
                     break;
 
                 case R.id.btn_login_account:
-                    if(!isEmpty(usrid) && !isEmpty(pswrd)) {
-                        loginToAccount();
-                    }
+                    loginToAccount();
                     break;
 
                 case R.id.btn_register:
@@ -67,18 +65,20 @@ public class ActivityLogin extends AppCompatActivity {
         register.setOnClickListener(clickListener);
 
         usrid = (EditText) loginContent.findViewById(R.id.userid);
-        pswrd =  (EditText) loginContent.findViewById(R.id.userid);
-
-    }
-
-    protected void loginToAccount(){
-        startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
-        finish();
+        pswrd =  (EditText) loginContent.findViewById(R.id.text_password);
     }
 
     protected boolean isEmpty(EditText text){
         if(text.getText().toString().trim().length()>0) return false;
         return true;
     }
+    protected void loginToAccount(){
+
+        if(!isEmpty(usrid) && !isEmpty(pswrd)) {
+            startActivity(new Intent(ActivityLogin.this,ActivityAccount.class));
+        }
+        finish();
+    }
+
 
 }
