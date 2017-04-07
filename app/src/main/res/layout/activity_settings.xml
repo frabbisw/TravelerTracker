@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:gravity="center_vertical"
     android:orientation="vertical"
@@ -24,16 +23,36 @@
         android:textColorHint="@color/text"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/photo"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="Set Profile Photo"
         android:inputType="text"
         android:textSize="16sp"
-        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical"
         android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="150dp"
+        android:src="@drawable/rabbi"
+        />
+
+    <Button
+        android:id="@+id/browsePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/loginbutton"
+        android:hint="Browse Photo"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
         android:textColorHint="@color/text"
         />
 
@@ -43,7 +62,7 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         >
 
         <TextView
@@ -108,7 +127,7 @@
         android:background="@color/loginbutton"
         android:hint="Save Change"
         android:textSize="16sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textColorHint="@color/text"
         />
 
@@ -119,7 +138,7 @@
         android:background="@color/loginbutton"
         android:hint="Log Out"
         android:textSize="16sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textColorHint="@color/text"
         />
 
