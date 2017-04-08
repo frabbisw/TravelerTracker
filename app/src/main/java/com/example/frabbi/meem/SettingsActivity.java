@@ -1,6 +1,7 @@
 package com.example.frabbi.meem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,17 +94,24 @@ public class SettingsActivity extends BottomBarActivity {
         myimageview.setOnClickListener(clickListener);
 
         /*getmode = (RadioGroup) findViewById(R.id.mode);
-        getmode.setOnClickListener((View.OnClickListener) this);
+        getmode.setOnClickListener((View.OnClickListener) this); */
 
         geteditname = (EditText) findViewById(R.id.editname);
-        geteditname.setOnClickListener((View.OnClickListener) this);
+        geteditname.setOnClickListener(clickListener);
 
-        getphoto = (EditText)  findViewById(R.id.photo);
-        getphoto.setOnClickListener((View.OnClickListener)this);*/
+
 
     }
 
     protected void saveNewChange(){
+
+        SharedPreferences sp = getSharedPreferences("ProfileName", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("ProfileName",geteditname.getText().toString());
+        editor.commit();
+
+
+
         Toast.makeText(this, "Changes Saved !", Toast.LENGTH_SHORT).show();
         return;
     }
@@ -129,6 +137,12 @@ public class SettingsActivity extends BottomBarActivity {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
                     String path = getRealPathFromURI(this, selectedImageUri);
+
+                    SharedPreferences sp = getSharedPreferences("profilePhoto", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("image_path",path);
+                    editor.commit();
+
                     Toast.makeText(this,path,Toast.LENGTH_SHORT).show();
                     myimageview.setImageBitmap(BitmapFactory.decodeFile(path));
 

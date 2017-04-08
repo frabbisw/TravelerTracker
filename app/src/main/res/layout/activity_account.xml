@@ -7,12 +7,24 @@
     android:background="@color/background"
     tools:context="com.example.frabbi.meem.ActivityAccount">
 
+
     <TextView
+        android:id="@+id/ProfileName"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:text="this is account"
+        android:layout_height="200sp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textColor="@color/white"
         />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/user"
+        />
 
 
 </LinearLayout>

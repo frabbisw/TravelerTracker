@@ -14,5 +14,6 @@
     <color name="background"> #689F38 </color>
     <color name="loginbutton"> #33691E </color>
     <color name="underline"> #FFFFFF </color>
+    <color name="up">#8BC34A</color>
 
 </resources>
