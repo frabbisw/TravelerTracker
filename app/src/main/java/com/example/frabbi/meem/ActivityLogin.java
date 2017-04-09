@@ -26,6 +26,7 @@ public class ActivityLogin extends AppCompatActivity {
     private EditText getnewpassword;
     private EditText getname;
     private EditText getconfirmation;
+    private TextView backToLogin;
 
     int currentState;
     final int loginState = 1;
@@ -37,6 +38,10 @@ public class ActivityLogin extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.text_create_account:
                     showRegPage();
+                    break;
+
+                case R.id.text_change_login:
+                    showLoginPage();
                     break;
 
                 case R.id.btn_login_account:
@@ -78,6 +83,9 @@ public class ActivityLogin extends AppCompatActivity {
 
         getname = (EditText) registerContent.findViewById(R.id.name);
         getconfirmation = (EditText) registerContent.findViewById(R.id.confirmpassword);
+
+        backToLogin = (TextView) registerContent.findViewById(R.id.text_change_login);
+        backToLogin.setOnClickListener(clickListener);
     }
 
     protected void loginToAccount() {
@@ -89,8 +97,15 @@ public class ActivityLogin extends AppCompatActivity {
             Toast.makeText(this, "Password required", Toast.LENGTH_SHORT).show();
             return;
         }
-        startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
-        finish();
+
+        String id=getuserid.getText().toString();
+        String password=getpassword.getText().toString();
+
+        ISystem.loadAccount(this, id, password);
+        //startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
+        //finish();
+
+
     }
 
     protected void openAccount() {
@@ -115,7 +130,7 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         if (!getconfirmation.getText().toString().equals(getnewpassword.getText().toString())) {
-            Toast.makeText(this, "Wrong Password. Try again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password not mathced. Try again", Toast.LENGTH_SHORT).show();
             return;
         }
 

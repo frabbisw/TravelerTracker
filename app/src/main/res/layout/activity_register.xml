@@ -76,5 +76,16 @@
         android:textColorHint="@color/text"
         />
 
+    <TextView
+        android:id="@+id/text_change_login"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Already Have an account? Login"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/text"
+        />
 
 </LinearLayout>

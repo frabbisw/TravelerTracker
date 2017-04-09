@@ -47,6 +47,4 @@ public class ActivityAccount extends BottomBarActivity {
         if(path!=null) imgview.setImageBitmap(BitmapFactory.decodeFile(path));
 
     }
-
-
 }
