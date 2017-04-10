@@ -41,13 +41,21 @@ public class ISystem
                 {
                     @Override
                     public void onResponse(String response) {
-                        Intent intent = new Intent(activity, ActivityAccount.class);
-                        intent.putExtra("Account", account);
-                        activity.startActivity(intent);
-                        activity.finish();
+                        if(response.equals("ok"))
+                        {
+                            Intent intent = new Intent(activity, SettingsActivity.class);
+                            intent.putExtra("Account", account);
+                            activity.startActivity(intent);
+                            activity.finish();
 
-                        String json = new Gson().toJson(account);
-                        setDefaults("Account",json,activity);
+                            String json = new Gson().toJson(account);
+                            setDefaults("Account", json, activity);
+                        }
+                        else
+                        {
+                            System.out.println("id taken");
+                            Toast.makeText(activity,"User ID not available", Toast.LENGTH_LONG).show();
+                        }
                     }
                 },
                 new Response.ErrorListener()
@@ -87,7 +95,7 @@ public class ISystem
                         {
                             String [] str = response.split(",");
                             Account account = new Account(str[0], str[1], str[2]);
-                            Intent intent = new Intent(activity, ActivityAccount.class);
+                            Intent intent = new Intent(activity, SettingsActivity.class);
                             intent.putExtra("Account", account);
                             activity.startActivity(intent);
                             activity.finish();

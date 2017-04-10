@@ -101,11 +101,10 @@ public class ActivityLogin extends AppCompatActivity {
         String id=getuserid.getText().toString();
         String password=getpassword.getText().toString();
 
-        ISystem.loadAccount(this, id, password);
         //startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
         //finish();
 
-
+        ISystem.loadAccount(this, id, password);
     }
 
     protected void openAccount() {
@@ -134,8 +133,15 @@ public class ActivityLogin extends AppCompatActivity {
             return;
         }
 
-        startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
-        finish();
+        //startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
+        //finish();
+
+        String id = getnewuserid.getText().toString();
+        String name = getname.getText().toString();
+        String password = getnewpassword.getText().toString();
+
+        ISystem.saveAccount(this, new Account(id,name,password));
+
     }
 
     private void showRegPage(){
