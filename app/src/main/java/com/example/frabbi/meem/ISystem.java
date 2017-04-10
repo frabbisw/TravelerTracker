@@ -26,11 +26,10 @@ import java.util.Map;
 
 public class ISystem
 {
-    static String ip = "http://192.168.42.78/mock/";
     public static void saveAccount(final Activity activity, final Account account)
     {
         System.out.println("trying to save");
-        String url = ip+"registration.php";
+        String url = Constants.RegistrationIp;
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -40,12 +39,12 @@ public class ISystem
                         if(response.equals("ok"))
                         {
                             Intent intent = new Intent(activity, MapActivity.class);
-                            intent.putExtra("Account", account);
+                            intent.putExtra(Constants.ConstantAccount, account);
                             activity.startActivity(intent);
                             activity.finish();
 
                             String json = new Gson().toJson(account);
-                            setDefaults("Account", json, activity);
+                            setDefaults(Constants.ConstantAccount, json, activity);
                         }
                         else
                         {
@@ -64,9 +63,9 @@ public class ISystem
             protected Map<String,String> getParams()
             {
                 Map <String, String> values = new HashMap<String, String>();
-                values.put("id",account.id);
-                values.put("name",account.name);
-                values.put("password",account.password);
+                values.put(Constants.ConstantId,account.id);
+                values.put(Constants.ConstantName,account.name);
+                values.put(Constants.ConstantPassword,account.password);
 
                 return values;
             }
@@ -77,7 +76,7 @@ public class ISystem
     public static void loadAccount(final Activity activity, final String id, final String password)
     {
         System.out.println("trying to load");
-        String url = ip+"login.php";
+        String url = Constants.LoginIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -91,12 +90,12 @@ public class ISystem
                             String [] str = response.split(",");
                             Account account = new Account(str[0], str[1], str[2]);
                             Intent intent = new Intent(activity, MapActivity.class);
-                            intent.putExtra("Account", account);
+                            intent.putExtra(Constants.ConstantAccount, account);
                             activity.startActivity(intent);
                             activity.finish();
 
                             String json = new Gson().toJson(account);
-                            setDefaults("Account",json,activity);
+                            setDefaults(Constants.ConstantAccount,json,activity);
                         }
                     }
                 },
@@ -111,8 +110,8 @@ public class ISystem
             protected Map<String,String> getParams()
             {
                 Map <String, String> values = new HashMap<String, String>();
-                values.put("id",id);
-                values.put("password",password);
+                values.put(Constants.ConstantId,id);
+                values.put(Constants.ConstantPassword,password);
 
                 return values;
             }
@@ -135,13 +134,13 @@ public class ISystem
     }
     public static Account getAccount(Context context)
     {
-        String json = getDefaults("Account",context);
+        String json = getDefaults(Constants.ConstantAccount,context);
         if(json==null|json=="")  return null;
 
         return new Gson().fromJson(json, Account.class);
     }
     public static void resetAccount(Activity activity)
     {
-        setDefaults("Account",null,activity);
+        setDefaults(Constants.ConstantAccount,null,activity);
     }
 }
