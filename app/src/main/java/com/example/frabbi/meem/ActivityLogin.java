@@ -61,6 +61,15 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_layout);
 
+        Account account = ISystem.getAccount(this);
+        if(account!=null)
+        {
+            Intent intent = new Intent(this, MapActivity.class);
+            intent.putExtra("Account", account);
+            startActivity(intent);
+            finish();
+        }
+
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         loginContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_login, contentFrame, false);
         registerContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_register, contentFrame, false);

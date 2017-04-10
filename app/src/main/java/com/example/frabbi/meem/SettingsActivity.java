@@ -110,13 +110,12 @@ public class SettingsActivity extends BottomBarActivity {
         editor.putString("ProfileName",geteditname.getText().toString());
         editor.commit();
 
-
-
         Toast.makeText(this, "Changes Saved !", Toast.LENGTH_SHORT).show();
         return;
     }
 
     protected void logoutFromAccount(){
+        ISystem.resetAccount(this);
         Toast.makeText(this, "Logged Out !", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(SettingsActivity.this,ActivityLogin.class));
     }

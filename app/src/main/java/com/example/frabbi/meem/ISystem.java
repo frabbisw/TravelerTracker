@@ -24,10 +24,6 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by frabbi on 4/5/17.
- */
-
 public class ISystem
 {
     static String ip = "http://192.168.42.78/mock/";
@@ -43,7 +39,7 @@ public class ISystem
                     public void onResponse(String response) {
                         if(response.equals("ok"))
                         {
-                            Intent intent = new Intent(activity, SettingsActivity.class);
+                            Intent intent = new Intent(activity, MapActivity.class);
                             intent.putExtra("Account", account);
                             activity.startActivity(intent);
                             activity.finish();
@@ -53,7 +49,6 @@ public class ISystem
                         }
                         else
                         {
-                            System.out.println("id taken");
                             Toast.makeText(activity,"User ID not available", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -95,7 +90,7 @@ public class ISystem
                         {
                             String [] str = response.split(",");
                             Account account = new Account(str[0], str[1], str[2]);
-                            Intent intent = new Intent(activity, SettingsActivity.class);
+                            Intent intent = new Intent(activity, MapActivity.class);
                             intent.putExtra("Account", account);
                             activity.startActivity(intent);
                             activity.finish();
@@ -137,5 +132,16 @@ public class ISystem
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, null);
+    }
+    public static Account getAccount(Context context)
+    {
+        String json = getDefaults("Account",context);
+        if(json==null|json=="")  return null;
+
+        return new Gson().fromJson(json, Account.class);
+    }
+    public static void resetAccount(Activity activity)
+    {
+        setDefaults("Account",null,activity);
     }
 }
