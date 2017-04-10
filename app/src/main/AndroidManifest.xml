@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityAccount" android:label="Profile"/>
         <activity android:name=".SettingsActivity"  android:label="Settings"/>
         <activity android:name=".BottomBarActivity" />
         <activity android:name=".CircleActivity" android:label="Circle Creation"/>
