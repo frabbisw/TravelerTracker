@@ -21,10 +21,9 @@ public class MapActivity extends BottomBarActivity {
         map.setClickable(false);
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        Account account = (Account) intent.getSerializableExtra("Account");
-
-        Toast.makeText(this,"Hello "+account.name,Toast.LENGTH_LONG).show();
+        //Intent intent = getIntent();
+        //Account account = (Account) intent.getSerializableExtra("Account");
+        //Toast.makeText(this,"Hello "+account.name,Toast.LENGTH_LONG).show();
     }
 }
 
