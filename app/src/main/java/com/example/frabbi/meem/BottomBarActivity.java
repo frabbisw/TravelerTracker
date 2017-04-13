@@ -13,7 +13,6 @@ import android.widget.ImageView;
 public class BottomBarActivity extends AppCompatActivity {
 
     protected FrameLayout frameContent;
-    protected ImageView ownAccount;
     protected ImageView circle;
     protected ImageView checkIn;
     protected ImageView map;
@@ -37,9 +36,6 @@ public class BottomBarActivity extends AppCompatActivity {
 
         map = (ImageView) findViewById(R.id.img_map);
         map.setOnClickListener(clickListener);
-
-        ownAccount = (ImageView) findViewById(R.id.img_profile);
-        ownAccount.setOnClickListener(clickListener);
 
     }
 
@@ -65,10 +61,6 @@ public class BottomBarActivity extends AppCompatActivity {
                     showMap();
                     break;
 
-                case R.id.img_profile:
-                    showAccount();
-                    break;
-
             }
         }
     };
@@ -87,10 +79,6 @@ public class BottomBarActivity extends AppCompatActivity {
 
     protected void showMap(){
         startActivity(new Intent(BottomBarActivity.this,MapActivity.class));
-    }
-
-    protected void showAccount(){
-        startActivity(new Intent(BottomBarActivity.this,ActivityAccount.class));
     }
 
 }

@@ -1,146 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="32dp"
-    android:id="@+id/activity_settings">
-
-
-    <EditText
-        android:id="@+id/editname"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:hint="Edit Profile Name"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text"
-        />
-
-    <TextView
-        android:id="@+id/photo"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:hint="Set Profile Photo"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:orientation="vertical"
-        android:textColor="@color/text"
-        android:textColorHint="@color/text"
-        />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilePhoto"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="150dp"
-        android:src="@drawable/user_icon"
-        />
-
-    <Button
-        android:id="@+id/browsePhoto"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@color/loginbutton"
-        android:hint="Browse Photo"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/text"
-        />
-
+    android:overScrollMode="never"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
+        android:id="@+id/activity_settings"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <EditText
+            android:id="@+id/editname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center_vertical"
+            android:hint="Edit Profile Name"
+            android:paddingLeft="4dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:inputType="text"
+            android:orientation="vertical"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:layout_marginTop="10dp"
+            android:hint="Set Profile Photo"
+            android:inputType="text"
+            android:orientation="vertical"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            android:textSize="16sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="150dp"
+            android:src="@drawable/user" />
+
+        <Button
+            android:id="@+id/browsePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/loginbutton"
+            android:hint="Browse Photo"
+            android:textColorHint="@color/text"
+            android:textSize="16sp" />
+
+
+        <TextView
             android:layout_width="wrap_content"
-            android:text="Set Check In Mode"
-            android:textSize="16sp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
+            android:text="Set Check In Mode"
             android:textColor="@color/text"
+            android:padding="4dp"
             android:textColorHint="@color/text"
-            />
+            android:textSize="16sp" />
 
-
-        <RadioGroup
-            android:id="@+id/mode"
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            >
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:hint="Auto"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:buttonTint="@color/white"
-            android:textColorLink="@color/white"
-            android:id="@+id/auto"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:textColor="@color/text"
+
+
+            <RadioGroup
+                android:id="@+id/mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:hint="Auto"
+                    android:orientation="vertical"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/text"
+                    android:textColorLink="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/manual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:hint="Manual"
+                    android:orientation="vertical"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/text" />
+
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/set_time_interval"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveChange"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/loginbutton"
+            android:hint="Save Change"
             android:textColorHint="@color/text"
-            />
+            android:textSize="16sp" />
 
-        <RadioButton
-            android:hint="Manual"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:buttonTint="@color/white"
-            android:id="@+id/manual"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:textColor="@color/text"
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/loginbutton"
+            android:hint="Log Out"
             android:textColorHint="@color/text"
-            />
+            android:textSize="16sp" />
 
-        </RadioGroup>
-
-        <Spinner
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/time"
-            android:entries="@array/set_time_interval"
-            >
-        </Spinner>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/saveChange"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@color/loginbutton"
-        android:hint="Save Change"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:textColorHint="@color/text"
-        />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@color/loginbutton"
-        android:hint="Log Out"
-        android:textSize="16sp"
-        android:layout_marginTop="20dp"
-        android:textColorHint="@color/text"
-        />
-
-
-</LinearLayout>
+</ScrollView>

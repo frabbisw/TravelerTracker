@@ -61,14 +61,14 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_layout);
 
-        Account account = ISystem.getAccount(this);
+       /* Account account = ISystem.getAccount(this);
         if(account!=null)
         {
             Intent intent = new Intent(this, MapActivity.class);
             intent.putExtra("Account", account);
             startActivity(intent);
             finish();
-        }
+        }*/
 
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         loginContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_login, contentFrame, false);
@@ -110,10 +110,10 @@ public class ActivityLogin extends AppCompatActivity {
         String id=getuserid.getText().toString();
         String password=getpassword.getText().toString();
 
-        //startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
-        //finish();
+        startActivity(new Intent(ActivityLogin.this, MapActivity.class));
+        finish();
 
-        ISystem.loadAccount(this, id, password);
+        //ISystem.loadAccount(this, id, password);
     }
 
     protected void openAccount() {
@@ -142,14 +142,14 @@ public class ActivityLogin extends AppCompatActivity {
             return;
         }
 
-        //startActivity(new Intent(ActivityLogin.this, ActivityAccount.class));
-        //finish();
+        startActivity(new Intent(ActivityLogin.this, MapActivity.class));
+        finish();
 
         String id = getnewuserid.getText().toString();
         String name = getname.getText().toString();
         String password = getnewpassword.getText().toString();
 
-        ISystem.saveAccount(this, new Account(id,name,password));
+       // ISystem.saveAccount(this, new Account(id,name,password));
 
     }
 
