@@ -34,7 +34,7 @@
         android:orientation="vertical"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
-        android:drawableLeft="@drawable/ic_account_circle_24dp"
+        android:drawableLeft="@drawable/ic_account_box_white_24dp"
         />
 
     <EditText

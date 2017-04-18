@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="12dp"
-            android:src="@drawable/ic_my_location_white_24dp" />
+            android:src="@drawable/ic_location_on_white_24dp" />
 
         <ImageView
             android:id="@+id/img_map"
@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="12dp"
-            android:src="@drawable/ic_home_white_24dp" />
+            android:src="@drawable/ic_map_white_24dp" />
 
 
         <ImageView

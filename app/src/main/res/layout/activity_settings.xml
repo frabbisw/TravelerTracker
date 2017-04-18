@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:overScrollMode="never"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:overScrollMode="never">
 
     <LinearLayout
         android:id="@+id/activity_settings"
@@ -13,115 +14,83 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user" />
 
         <EditText
             android:id="@+id/editname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:gravity="center_vertical"
-            android:hint="Edit Profile Name"
-            android:paddingLeft="4dp"
-            android:paddingBottom="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:inputType="text"
-            android:orientation="vertical"
-            android:textColor="@color/text"
-            android:textColorHint="@color/text"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingBottom="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="10dp"
-            android:hint="Set Profile Photo"
-            android:inputType="text"
-            android:orientation="vertical"
-            android:textColor="@color/text"
-            android:textColorHint="@color/text"
-            android:textSize="16sp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePhoto"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="150dp"
-            android:src="@drawable/user" />
-
-        <Button
-            android:id="@+id/browsePhoto"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/loginbutton"
-            android:hint="Browse Photo"
-            android:textColorHint="@color/text"
-            android:textSize="16sp" />
-
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:text="Set Check In Mode"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_account_circle_24dp"
+            android:hint=" Profile Name"
+            android:inputType="text"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
             android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/change_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_lock_outline_24dp"
+            android:orientation="vertical"
             android:padding="4dp"
+            android:text=" Change Password  "
+            android:textColor="@color/text"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
 
         <LinearLayout
-            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
 
-
-            <RadioGroup
-                android:id="@+id/mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
-                    android:gravity="center_vertical"
-                    android:hint="Auto"
-                    android:orientation="vertical"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/text"
-                    android:textColorLink="@color/white" />
-
-                <RadioButton
-                    android:id="@+id/manual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
-                    android:gravity="center_vertical"
-                    android:hint="Manual"
-                    android:orientation="vertical"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/text" />
-
-            </RadioGroup>
-
-            <Spinner
-                android:id="@+id/time"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/set_time_interval"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_my_location_white_24dp"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:text=" Set Auto Check In  "
+                android:textColor="@color/text"
+                android:textColorHint="@color/text"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false" />
 
         </LinearLayout>
+
+        <Spinner
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:entries="@array/set_time_interval"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/saveChange"
@@ -142,7 +111,6 @@
             android:hint="Log Out"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
-
 
     </LinearLayout>
 
