@@ -20,7 +20,5 @@ public class CircleActivity extends BottomBarActivity {
         circle.setClickable(false);
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-
 }
 

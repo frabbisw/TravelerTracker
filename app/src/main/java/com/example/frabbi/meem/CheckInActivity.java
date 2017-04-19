@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -28,6 +29,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class CheckInActivity extends BottomBarActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener{
 
@@ -38,7 +42,8 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationManager locationManager;
-
+    Calendar calendar;
+    SimpleDateFormat dateFormat;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home) onBackPressed();
@@ -53,6 +58,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        dateFormat = new SimpleDateFormat(Constants.DateFormat);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
@@ -69,6 +75,35 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.checkInMap);
         mapFrag.getMapAsync(this);
     }
+
+    public void checkInAsHome(View view)
+    {
+        calendar = Calendar.getInstance();
+        String dateTime = dateFormat.format(calendar.getTime());
+        CheckedInPosition position = new HomePosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+
+        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
+        Log.e("Home",str);
+    }
+    public void checkInAsWork(View view)
+    {
+        calendar = Calendar.getInstance();
+        String dateTime = dateFormat.format(calendar.getTime());
+        CheckedInPosition position = new WorkPosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+
+        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
+        Log.e("Work",str);
+    }
+    public void checkInTemporary(View view)
+    {
+        calendar = Calendar.getInstance();
+        String dateTime = dateFormat.format(calendar.getTime());
+        CheckedInPosition position = new TemporaryPosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+
+        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
+        Log.e("Temporary",str);
+    }
+
     private void showGPSDisabledAlertToUser()
     {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -112,7 +147,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
     {
         mGoogleMap=googleMap;
         if(mGoogleMap==null) Log.e("","");
-        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
