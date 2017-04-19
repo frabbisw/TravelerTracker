@@ -2,19 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.frabbi.meem">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/trackingicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/newTheme" />
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ActivityLogin"
             android:theme="@style/newTheme">
@@ -24,11 +22,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity"  android:label="Settings"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Settings" />
         <activity android:name=".BottomBarActivity" />
-        <activity android:name=".CircleActivity" android:label="Circle Creation"/>
-        <activity android:name=".CheckInActivity" android:label="Check In"/>
-        <activity android:name=".MapActivity" android:label="Map"></activity>
+        <activity
+            android:name=".CircleActivity"
+            android:label="Circle Creation" />
+        <activity
+            android:name=".CheckInActivity"
+            android:label="Check In" />
+        <activity
+            android:name=".MapActivity"
+            android:label="Map" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBqO3uz42uIj5GVNoWYhTtRPpCrfUiW5Pg" />
+
     </application>
 
 </manifest> <!-- android:label="@string/app_name" -->

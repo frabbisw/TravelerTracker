@@ -13,5 +13,6 @@ public class Constants
     public static final String ConstantName="name";
     public static final String ConstantPassword="password";
     public static final String ConstantAccount="Account";
-
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public static final int MY_PERMISSIONS_REQUEST_RESOURCE = 100;
 }

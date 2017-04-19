@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_check_in"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context="com.example.frabbi.meem.CheckInActivity">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:text="this is Check In"
-        />
+        android:layout_height="match_parent"
+        android:id="@+id/checkInMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
 </LinearLayout>

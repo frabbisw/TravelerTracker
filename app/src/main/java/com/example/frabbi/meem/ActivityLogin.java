@@ -1,7 +1,11 @@
 package com.example.frabbi.meem;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +64,12 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_layout);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if (!checkLocationPermission())
+                checkResourcePermission();
+        }
 
        /* Account account = ISystem.getAccount(this);
         if(account!=null)
@@ -169,5 +179,43 @@ public class ActivityLogin extends AppCompatActivity {
     public void onBackPressed() {
         if(currentState==loginState) super.onBackPressed();
         else showLoginPage();
+    }
+
+    public boolean checkLocationPermission()
+    {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION))
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        Constants.MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        Constants.MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        }
+        else return false;
+    }
+
+    public boolean checkResourcePermission()
+    {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE))
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
+            }
+            return false;
+        }
+        else return false;
     }
 }

@@ -4,9 +4,7 @@
     android:id="@+id/activity_account"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.frabbi.meem.BottomBarActivity"
-
-    >
+    tools:context="com.example.frabbi.meem.BottomBarActivity">
 
     <FrameLayout
         android:id="@+id/content_frame"
