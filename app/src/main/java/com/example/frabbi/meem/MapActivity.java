@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 public class MapActivity extends BottomBarActivity {
 
+    Account account=null;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home) onBackPressed();
@@ -21,9 +22,6 @@ public class MapActivity extends BottomBarActivity {
         map.setClickable(false);
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Intent intent = getIntent();
-        //Account account = (Account) intent.getSerializableExtra("Account");
-        //Toast.makeText(this,"Hello "+account.name,Toast.LENGTH_LONG).show();
+        account=ISystem.loadAccountFromCache(this);
     }
 }
-

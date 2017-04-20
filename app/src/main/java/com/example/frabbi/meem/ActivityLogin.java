@@ -120,10 +120,10 @@ public class ActivityLogin extends AppCompatActivity {
         String id=getuserid.getText().toString();
         String password=getpassword.getText().toString();
 
-        startActivity(new Intent(ActivityLogin.this, MapActivity.class));
-        finish();
+        //startActivity(new Intent(ActivityLogin.this, MapActivity.class));
+        //finish();
 
-        //ISystem.loadAccount(this, id, password);
+        ISystem.loadAccount(this, id, password);
     }
 
     protected void openAccount() {
@@ -152,14 +152,14 @@ public class ActivityLogin extends AppCompatActivity {
             return;
         }
 
-        startActivity(new Intent(ActivityLogin.this, MapActivity.class));
-        finish();
+        //startActivity(new Intent(ActivityLogin.this, MapActivity.class));
+        //finish();
 
         String id = getnewuserid.getText().toString();
         String name = getname.getText().toString();
         String password = getnewpassword.getText().toString();
 
-       // ISystem.saveAccount(this, new Account(id,name,password));
+        ISystem.saveAccount(this, new Account(id,name,password));
 
     }
 

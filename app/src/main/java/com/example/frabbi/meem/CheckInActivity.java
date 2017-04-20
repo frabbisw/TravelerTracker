@@ -44,6 +44,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
     LocationManager locationManager;
     Calendar calendar;
     SimpleDateFormat dateFormat;
+    Account account=null;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home) onBackPressed();
@@ -59,6 +60,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         dateFormat = new SimpleDateFormat(Constants.DateFormat);
+        account=ISystem.loadAccountFromCache(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
@@ -84,6 +86,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
 
         String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
         Log.e("Home",str);
+        Log.e("ID",account.id);
     }
     public void checkInAsWork(View view)
     {
@@ -93,6 +96,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
 
         String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
         Log.e("Work",str);
+        Log.e("ID",account.id);
     }
     public void checkInTemporary(View view)
     {
@@ -102,6 +106,7 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
 
         String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
         Log.e("Temporary",str);
+        Log.e("ID",account.id);
     }
 
     private void showGPSDisabledAlertToUser()
@@ -297,4 +302,3 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
         }
     }
 }
-

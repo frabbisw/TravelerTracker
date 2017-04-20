@@ -38,13 +38,12 @@ public class ISystem
                     public void onResponse(String response) {
                         if(response.equals("ok"))
                         {
-                            Intent intent = new Intent(activity, MapActivity.class);
-                            intent.putExtra(Constants.ConstantAccount, account);
+                            Context context = activity.getApplicationContext();
+                            saveAccountInCache(context, account);
+                            Intent intent = new Intent(context, MapActivity.class);
+
                             activity.startActivity(intent);
                             activity.finish();
-
-                            String json = new Gson().toJson(account);
-                            setDefaults(Constants.ConstantAccount, json, activity);
                         }
                         else
                         {
@@ -56,7 +55,7 @@ public class ISystem
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("something went wrong");
+                        Toast.makeText(activity,"Network not available", Toast.LENGTH_LONG).show();
                     }
                 })
         {
@@ -70,7 +69,7 @@ public class ISystem
                 return values;
             }
         };
-        Volley.newRequestQueue(activity).add(request);
+        Volley.newRequestQueue(activity.getApplicationContext()).add(request);
     }
 
     public static void loadAccount(final Activity activity, final String id, final String password)
@@ -87,15 +86,15 @@ public class ISystem
                             Toast.makeText(activity, "id and password not matched",Toast.LENGTH_LONG).show();
                         else
                         {
+                            Context context = activity.getApplicationContext();
                             String [] str = response.split(",");
                             Account account = new Account(str[0], str[1], str[2]);
-                            Intent intent = new Intent(activity, MapActivity.class);
-                            intent.putExtra(Constants.ConstantAccount, account);
+
+                            saveAccountInCache(context,account);
+
+                            Intent intent = new Intent(context, MapActivity.class);
                             activity.startActivity(intent);
                             activity.finish();
-
-                            String json = new Gson().toJson(account);
-                            setDefaults(Constants.ConstantAccount,json,activity);
                         }
                     }
                 },
@@ -103,44 +102,50 @@ public class ISystem
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("something went wrong");
+                        Toast.makeText(activity,"Network not available", Toast.LENGTH_LONG).show();
                     }
                 })
-        {
-            protected Map<String,String> getParams()
-            {
-                Map <String, String> values = new HashMap<String, String>();
-                values.put(Constants.ConstantId,id);
-                values.put(Constants.ConstantPassword,password);
+                {
+                    protected Map<String,String> getParams()
+                    {
+                        Map <String, String> values = new HashMap<String, String>();
+                        values.put(Constants.ConstantId,id);
+                        values.put(Constants.ConstantPassword,password);
 
-                return values;
-            }
-        };
+                        return values;
+                    }
+                };
 
-        Volley.newRequestQueue(activity).add(request);
+        Volley.newRequestQueue(activity.getApplicationContext()).add(request);
     }
 
-    public static void setDefaults(String key, String value, Context context)
+    private static void setDefaults(String key, String value, Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
         editor.commit();
     }
-    public static String getDefaults(String key, Context context)
+    private static String getDefaults(String key, Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, null);
     }
-    public static Account getAccount(Context context)
+    public static void saveAccountInCache(Context context, Account account)
+    {
+        String json = new Gson().toJson(account);
+        setDefaults(Constants.ConstantAccount, json, context);
+    }
+    public static Account loadAccountFromCache(Context context)
     {
         String json = getDefaults(Constants.ConstantAccount,context);
         if(json==null|json=="")  return null;
 
         return new Gson().fromJson(json, Account.class);
     }
-    public static void resetAccount(Activity activity)
+    public static void resetAccountInCache(Context context)
     {
-        setDefaults(Constants.ConstantAccount,null,activity);
+        setDefaults(Constants.ConstantAccount,null,context);
     }
+    //public static void checkInAsHome
 }

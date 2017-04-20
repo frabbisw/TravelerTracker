@@ -15,5 +15,5 @@ public class Constants
     public static final String ConstantAccount="Account";
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final int MY_PERMISSIONS_REQUEST_RESOURCE = 100;
-    public static final String DateFormat = "yyyy/MM/dd hh:mm:ss";
+    public static final String DateFormat = "yyyy/MM/dd HH:mm:ss";
 }

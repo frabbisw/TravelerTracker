@@ -104,9 +104,9 @@ public class SettingsActivity extends BottomBarActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     protected void logoutFromAccount() {
-        ISystem.resetAccount(this);
+        ISystem.resetAccountInCache(this);
         Toast.makeText(this, "Logged Out !", Toast.LENGTH_SHORT).show();
-        finishAffinity();
+        this.finish();
         startActivity(new Intent(SettingsActivity.this, ActivityLogin.class));
     }
 
