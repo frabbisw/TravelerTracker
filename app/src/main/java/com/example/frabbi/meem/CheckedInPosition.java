@@ -6,14 +6,26 @@ package com.example.frabbi.meem;
 
 public class CheckedInPosition
 {
-    double latitude;
-    double longitude;
+    String latitude;
+    String longitude;
     String dateTime;
+    String id;
+    String type;
 
-    public CheckedInPosition(double latitude, double longitude, String dateTime)
+    public CheckedInPosition(String id, String dateTime, double latitude, double longitude, String type)
+    {
+        this.latitude=Double.toString(latitude);
+        this.longitude=Double.toString(longitude);
+        this.dateTime=dateTime;
+        this.id=id;
+        this.type=type;
+    }
+    public CheckedInPosition(String id, String dateTime, String latitude, String longitude, String type)
     {
         this.latitude=latitude;
         this.longitude=longitude;
         this.dateTime=dateTime;
+        this.id=id;
+        this.type=type;
     }
 }

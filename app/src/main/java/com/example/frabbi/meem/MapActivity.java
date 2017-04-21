@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MapActivity extends BottomBarActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
+public class MapActivity extends BottomBarActivity implements OnMapReadyCallback {
 
     Account account=null;
     @Override
@@ -23,5 +26,11 @@ public class MapActivity extends BottomBarActivity {
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         account=ISystem.loadAccountFromCache(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap)
+    {
+
     }
 }

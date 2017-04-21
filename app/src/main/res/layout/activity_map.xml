@@ -7,10 +7,10 @@
     android:background="@color/background"
     tools:context="com.example.frabbi.meem.MapActivity">
 
-    <TextView
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:text="this is Map"
-        />
+        android:layout_height="match_parent"
+        android:id="@+id/viewMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
 </LinearLayout>

@@ -10,6 +10,8 @@ public class Account implements Serializable {
     String id;
     String name;
     String password;
+    String latitude;
+    String longitude;
 
     public Account(){}
     public Account(String id, String name, String password)

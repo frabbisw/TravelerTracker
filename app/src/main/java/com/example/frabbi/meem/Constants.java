@@ -6,9 +6,11 @@ package com.example.frabbi.meem;
 
 public class Constants
 {
-    public static final String DestinationIp="http://10.100.104.225/mock/";
+    public static final String DestinationIp="http://192.168.0.108/mock/";
     public static final String LoginIp=DestinationIp+"login.php";
     public static final String RegistrationIp=DestinationIp+"registration.php";
+    public static final String CheckinIp=DestinationIp+"checkIn.php";
+    public static final String UpdateIp=DestinationIp+"update.php";
     public static final String ConstantId="id";
     public static final String ConstantName="name";
     public static final String ConstantPassword="password";
@@ -16,4 +18,8 @@ public class Constants
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final int MY_PERMISSIONS_REQUEST_RESOURCE = 100;
     public static final String DateFormat = "yyyy/MM/dd HH:mm:ss";
+    public static final String ConstantLatitute = "latitude";
+    public static final String ConstantLongitude = "longitude";
+    public static final String ConstantDate = "date";
+    public static final String CheckInType = "type";
 }

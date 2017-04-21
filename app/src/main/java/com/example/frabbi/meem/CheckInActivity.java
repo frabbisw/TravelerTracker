@@ -82,31 +82,25 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
     {
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new HomePosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+        CheckedInPosition position = new HomePosition(account.id, dateTime, mLastLocation.getLatitude(),mLastLocation.getLongitude());
 
-        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
-        Log.e("Home",str);
-        Log.e("ID",account.id);
+        ISystem.checkIn(getApplicationContext(), position);
     }
     public void checkInAsWork(View view)
     {
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new WorkPosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+        CheckedInPosition position = new WorkPosition(account.id, dateTime, mLastLocation.getLatitude(),mLastLocation.getLongitude());
 
-        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
-        Log.e("Work",str);
-        Log.e("ID",account.id);
+        ISystem.checkIn(getApplicationContext(), position);
     }
     public void checkInTemporary(View view)
     {
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new TemporaryPosition(mLastLocation.getLatitude(),mLastLocation.getLongitude(),dateTime);
+        CheckedInPosition position = new TemporaryPosition(account.id, dateTime, mLastLocation.getLatitude(),mLastLocation.getLongitude());
 
-        String str = Double.toString(position.latitude)+" "+Double.toString(position.longitude)+" "+position.dateTime;
-        Log.e("Temporary",str);
-        Log.e("ID",account.id);
+        ISystem.checkIn(getApplicationContext(), position);
     }
 
     private void showGPSDisabledAlertToUser()

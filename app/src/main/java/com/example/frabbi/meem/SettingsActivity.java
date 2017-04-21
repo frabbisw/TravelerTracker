@@ -3,6 +3,7 @@ package com.example.frabbi.meem;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +34,7 @@ public class SettingsActivity extends BottomBarActivity {
     private SwitchCompat mode;
     private Spinner time;
 
-    private static final int BROWSE_GALLERY_REQUEST_CODE = 100;
+
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -67,6 +70,9 @@ public class SettingsActivity extends BottomBarActivity {
 
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         settings.setClickable(false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            checkResourcePermission();
 
         logoutBtn = (Button) findViewById(R.id.logout);
         logoutBtn.setOnClickListener(clickListener);
@@ -123,12 +129,12 @@ public class SettingsActivity extends BottomBarActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_PICK);
         if (getPackageManager().resolveActivity(intent, 0) != null) {
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), BROWSE_GALLERY_REQUEST_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
         }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == BROWSE_GALLERY_REQUEST_CODE) {
+        if (requestCode == Constants.MY_PERMISSIONS_REQUEST_RESOURCE) {
             if (resultCode == RESULT_OK) {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
@@ -160,5 +166,23 @@ public class SettingsActivity extends BottomBarActivity {
                 cursor.close();
             }
         }
+    }
+    public boolean checkResourcePermission()
+    {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE))
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
+            }
+            return false;
+        }
+        else return false;
     }
 }

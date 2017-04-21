@@ -59,26 +59,21 @@ public class ActivityLogin extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_layout);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            if (!checkLocationPermission())
-                checkResourcePermission();
-        }
+            checkLocationPermission();
 
-       /* Account account = ISystem.getAccount(this);
-        if(account!=null)
+        Account account = ISystem.loadAccountFromCache(this);
+        if(account!=null )
         {
             Intent intent = new Intent(this, MapActivity.class);
-            intent.putExtra("Account", account);
             startActivity(intent);
             finish();
-        }*/
+        }
 
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         loginContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_login, contentFrame, false);
@@ -194,25 +189,6 @@ public class ActivityLogin extends AppCompatActivity {
             {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         Constants.MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        }
-        else return false;
-    }
-
-    public boolean checkResourcePermission()
-    {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-        {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE))
-            {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
-                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
-            }
-            else
-            {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
-                        Constants.MY_PERMISSIONS_REQUEST_RESOURCE);
             }
             return false;
         }
