@@ -1,5 +1,6 @@
 package com.example.frabbi.meem;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
     Account account=null;
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
+    boolean shouldRefreshMap=true;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home) onBackPressed();
@@ -55,7 +57,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
         {
             public void run()
             {
-                for(int i=0; i<10; i++)
+                while (shouldRefreshMap)
                 {
                     final double x = 23+random.nextDouble();
                     final double y = 90+random.nextDouble();
@@ -70,14 +72,20 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                         }
                     });
 
-                    Log.e("M",Integer.toString(i));
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(60 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         }.start();
+    }
+
+    @Override
+    protected void onStop()
+    {
+        shouldRefreshMap=false;
+        super.onStop();
     }
 }
