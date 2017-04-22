@@ -69,11 +69,12 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                             marker.setPosition(lt);
                             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(lt));
                             mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(6));
+                            Log.e("M",x+" "+y);
                         }
                     });
 
                     try {
-                        Thread.sleep(60 * 1000);
+                        Thread.sleep(3 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

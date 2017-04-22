@@ -67,18 +67,21 @@ public class BottomBarActivity extends AppCompatActivity {
 
     protected void showSettings(){
         startActivity(new Intent(BottomBarActivity.this,SettingsActivity.class));
+        finish();
     }
 
     protected void showCircle(){
         startActivity(new Intent(BottomBarActivity.this,CircleActivity.class));
+        finish();
     }
 
     protected void showCheckIn(){
         startActivity(new Intent(BottomBarActivity.this,CheckInActivity.class));
+        finish();
     }
 
     protected void showMap(){
         startActivity(new Intent(BottomBarActivity.this,MapActivity.class));
+        finish();
     }
-
 }
