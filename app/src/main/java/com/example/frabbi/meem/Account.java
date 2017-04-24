@@ -20,4 +20,20 @@ public class Account implements Serializable {
         this.name=name;
         this.password=password;
     }
+    public String getId()
+    {
+        return id;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public double getLatitude()
+    {
+        return Double.parseDouble(latitude);
+    }
+    public double getLongitude()
+    {
+        return Double.parseDouble(longitude);
+    }
 }

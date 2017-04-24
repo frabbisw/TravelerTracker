@@ -12,7 +12,9 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +24,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -179,6 +185,50 @@ public class ISystem
                 values.put(Constants.ConstantId,account.id);
                 values.put(Constants.ConstantLatitute,account.latitude);
                 values.put(Constants.ConstantLongitude,account.longitude);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+    public static void loadFriends(final Account account, final ArrayList<Account>friends, Context context)
+    {
+        String url = Constants.loadFriendsIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            if(jsonArray!=null)
+                            {
+                                if(friends.isEmpty())
+                                    for(int i=0; i<jsonArray.length(); i++)
+                                        friends.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+                                else
+                                    for(int i=0; i<jsonArray.length(); i++)
+                                        friends.set(i, new Gson().fromJson(jsonArray.getString(i), Account.class));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,account.id);
 
                 return values;
             }
