@@ -34,12 +34,17 @@
             android:label="Check In" />
         <activity
             android:name=".MapActivity"
-            android:label="Map" />
+            android:label="Map"
+            android:launchMode="singleInstance" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBqO3uz42uIj5GVNoWYhTtRPpCrfUiW5Pg" />
 
+        <activity
+            android:name=".ProfileMapActivity"
+            android:label="@string/title_activity_profile_map"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest> <!-- android:label="@string/app_name" -->

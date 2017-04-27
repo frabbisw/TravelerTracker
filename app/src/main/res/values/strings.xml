@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Traveler Tracker</string>
+    <string name="title_activity_profile_map">ProfileMapActivity</string>
 </resources>

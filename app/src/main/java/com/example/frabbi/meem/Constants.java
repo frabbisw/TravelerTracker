@@ -11,11 +11,13 @@ public class Constants
     public static final String RegistrationIp=DestinationIp+"registration.php";
     public static final String CheckinIp=DestinationIp+"checkIn.php";
     public static final String UpdateIp=DestinationIp+"update.php";
-    public static final String loadFriendsIp=DestinationIp+"getFriends.php";
+    public static final String loadFriendsIp=DestinationIp+"getFriendsPositions.php";
+    public static final String loadCheckedInsIp=DestinationIp+"getCheckedIns.php";
     public static final String ConstantId="id";
     public static final String ConstantName="name";
     public static final String ConstantPassword="password";
     public static final String ConstantAccount="Account";
+    public static final String ConstantFriend="Friend";
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final int MY_PERMISSIONS_REQUEST_RESOURCE = 100;
     public static final String DateFormat = "yyyy/MM/dd HH:mm:ss";

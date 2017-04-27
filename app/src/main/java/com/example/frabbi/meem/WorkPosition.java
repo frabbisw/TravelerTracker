@@ -6,23 +6,23 @@ package com.example.frabbi.meem;
 
 public class WorkPosition extends CheckedInPosition
 {
-    public WorkPosition(String id, String dateTime, double latitude, double longitude)
+    public WorkPosition(String id, String date, double latitude, double longitude)
     {
-        super(id,dateTime,latitude,longitude,"work");
+        super(id,date,latitude,longitude,"work");
 
         this.latitude=Double.toString(latitude);
         this.longitude=Double.toString(longitude);
-        this.dateTime=dateTime;
+        this.date=date;
         this.id=id;
         this.type="work";
     }
-    public WorkPosition(String id, String dateTime, String latitude, String longitude)
+    public WorkPosition(String id, String date, String latitude, String longitude)
     {
-        super(id,dateTime,latitude,longitude, "work");
+        super(id,date,latitude,longitude, "work");
 
         this.latitude=latitude;
         this.longitude=longitude;
-        this.dateTime=dateTime;
+        this.date=date;
         this.id=id;
         this.type="work";
     }
