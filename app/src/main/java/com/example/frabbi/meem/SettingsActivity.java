@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
@@ -33,6 +34,7 @@ public class SettingsActivity extends BottomBarActivity {
     private CircleImageView myimageview;
     private SwitchCompat mode;
     private Spinner time;
+    Bitmap pp=null;
 
 
 
@@ -146,11 +148,18 @@ public class SettingsActivity extends BottomBarActivity {
                     editor.commit();
 
                     Toast.makeText(this, path, Toast.LENGTH_SHORT).show();
-                    myimageview.setImageBitmap(BitmapFactory.decodeFile(path));
-
+                    pp = BitmapFactory.decodeFile(path);
+                    myimageview.setImageBitmap(pp);
                 }
             }
         }
+    }
+
+    public void uploadPhoto(View view)
+    {
+        Account account = ISystem.loadAccountFromCache(getApplicationContext());
+        ISystem.sendImageToServer(account, pp,getApplicationContext());
+
     }
 
     public String getRealPathFromURI(Context context, Uri contentUri) {

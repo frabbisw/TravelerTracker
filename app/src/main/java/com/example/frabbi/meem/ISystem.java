@@ -16,6 +16,7 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -199,6 +201,45 @@ public class ISystem
             }
         };
         Volley.newRequestQueue(context).add(request);
+    }
+    public static void sendImageToServer(final Account account, Bitmap bitmap, final Context context)
+    {
+        final String image = getStringImage(bitmap);
+        String url = Constants.uploadPhotoIp;
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,account.id);
+                values.put(Constants.ConstantImage,image);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+    public static String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
     public static void getImage(final Canvas canvas, String path, final Context context)
     {

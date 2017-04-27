@@ -21,6 +21,15 @@
             android:layout_gravity="center"
             android:src="@drawable/user" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/loginbutton"
+            android:hint="Upload Photo"
+            android:textColorHint="@color/text"
+            android:textSize="16sp"
+            android:onClick="uploadPhoto"/>
         <EditText
             android:id="@+id/editname"
             android:layout_width="wrap_content"
@@ -98,7 +107,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:background="@color/loginbutton"
-            android:hint="Save Change"
+            android:hint="Update Info"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
 
