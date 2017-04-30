@@ -22,6 +22,7 @@ public class Constants
     public static final String requestFriendIp=DestinationIp+"requestFriend.php";
     public static final String searchAccountIp=DestinationIp+"searchAccount.php";
     public static final String loadRequestedUsersIp=DestinationIp+"getRequestedUsers.php";
+    public static final String getNotificationsIp=DestinationIp+"getNotifications.php";
 
     public static final String hudaiIp=DestinationIp+"hudai.php";
     public static final String ConstantId="id";

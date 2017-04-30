@@ -367,6 +367,7 @@ public class ISystem
     }
     public static void searchAccount(Context context, final String key, final ArrayList<Account>accounts)
     {
+        final Account account = loadAccountFromCache(context);
         String url = Constants.searchAccountIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -400,6 +401,7 @@ public class ISystem
             protected Map<String,String> getParams()
             {
                 Map <String, String> values = new HashMap<String, String>();
+                //values.put(Constants.ConstantId,account.getId());
                 values.put(Constants.ConstantKey,key);
 
                 return values;
@@ -598,7 +600,47 @@ public class ISystem
             protected Map<String,String> getParams()
             {
                 Map <String, String> values = new HashMap<String, String>();
-                values.put(Constants.ConstantId1,id);
+                values.put(Constants.ConstantId,id);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+    public static void getNotifications(Context context, final String id, final ArrayList<Notification>notifications)
+    {
+        String url = Constants.getNotificationsIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            if(jsonArray!=null)
+                            {
+                                for(int i=0; i<jsonArray.length(); i++)
+                                    notifications.add(new Gson().fromJson(jsonArray.getString(i), Notification.class));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,id);
 
                 return values;
             }
