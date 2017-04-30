@@ -14,13 +14,24 @@ public class Constants
     public static final String loadFriendsIp=DestinationIp+"getFriendsPositions.php";
     public static final String loadCheckedInsIp=DestinationIp+"getCheckedIns.php";
     public static final String uploadPhotoIp=DestinationIp+"uploadPhoto.php";
+
+    public static final String acceptRequestIp=DestinationIp+"acceptRequest.php";
+    public static final String cancelRequestIp=DestinationIp+"cancelRequest.php";
+    public static final String declineRequestIp=DestinationIp+"declineRequest.php";
+    public static final String removeFriendIp=DestinationIp+"removeFriend.php";
+    public static final String requestFriendIp=DestinationIp+"requestFriend.php";
+    public static final String searchAccountIp=DestinationIp+"searchAccount.php";
+
     public static final String hudaiIp=DestinationIp+"hudai.php";
     public static final String ConstantId="id";
+    public static final String ConstantId1="id1";
+    public static final String ConstantId2="id2";
     public static final String ConstantName="name";
     public static final String ConstantPassword="password";
     public static final String ConstantAccount="Account";
     public static final String ConstantFriend="Friend";
     public static final String ConstantImage="image";
+    public static final String ConstantKey="key";
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final int MY_PERMISSIONS_REQUEST_RESOURCE = 100;
     public static final String DateFormat = "yyyy/MM/dd HH:mm:ss";

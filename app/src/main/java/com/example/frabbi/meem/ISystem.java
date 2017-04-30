@@ -365,6 +365,208 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
+    public static void searchAccount(Context context, final String key, final ArrayList<Account>accounts)
+    {
+        String url = Constants.searchAccountIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try
+                        {
+                            JSONArray jsonArray = new JSONArray(response);
+                            if(jsonArray!=null)
+                            {
+                                for(int i=0; i<jsonArray.length(); i++)
+                                    accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+                            }
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantKey,key);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+    public static void requestFriend(Context context, final String id1, final String id2)
+    {
+        String url = Constants.requestFriendIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id1);
+                values.put(Constants.ConstantId2,id2);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+    public static void acceptRequest(Context context, final String id1, final String id2)
+    {
+        String url = Constants.acceptRequestIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id1);
+                values.put(Constants.ConstantId2,id2);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+    public static void declineRequest(Context context, final String id1, final String id2)
+    {
+        String url = Constants.declineRequestIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id1);
+                values.put(Constants.ConstantId2,id2);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+    public static void cancelRequest(Context context, final String id1, final String id2)
+    {
+        String url = Constants.cancelRequestIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id1);
+                values.put(Constants.ConstantId2,id2);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+    public static void removeFriendship(Context context, final String id1, final String id2)
+    {
+        String url = Constants.removeFriendIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id1);
+                values.put(Constants.ConstantId2,id2);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
+
+
     private static void setDefaults(String key, String value, Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
