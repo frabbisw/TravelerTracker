@@ -1,13 +1,16 @@
 package com.example.frabbi.meem;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +45,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
         map.setClickable(false);
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        startUpdating();
         account=ISystem.loadAccountFromCache(this);
         ISystem.loadFriends(account, friends, getApplicationContext());
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.viewMap);
@@ -86,14 +90,13 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                     l=friends.size();
                     Log.e("loading",i+"");
                 }
-                //friends.add(0,myAccount);
 
                 final ArrayList<Marker>markers=new ArrayList<Marker>();
 
                 if(friends.size()>0)
                 {
-                    for (final Account account : friends) {
-                        final Bitmap bmp = customBmp(account.getName());
+                    for (final Account friend : friends) {
+                        final Bitmap bmp = customBmp(friend);
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -104,13 +107,13 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                             @Override
                             public void run() {
                                 MarkerOptions markerOptions = new MarkerOptions();
-                                markerOptions.position(new LatLng(account.getLatitude(), account.getLongitude()));
+                                markerOptions.position(new LatLng(friend.getLatitude(), friend.getLongitude()));
 
                                 markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bmp));
                                 markerOptions.anchor(.5f, 1f);
 
                                 Marker marker = mGoogleMap.addMarker(markerOptions);
-                                marker.setTag(account);
+                                marker.setTag(friend);
                                 markers.add(marker);
                             }
                         });
@@ -141,7 +144,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                             }
                         });
                         try {
-                            Thread.sleep(25);
+                            Thread.sleep(25 * 1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -152,7 +155,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
         }.start();
     }
 
-    private Bitmap customBmp(String userName)
+    private Bitmap customBmp(Account friend)
     {
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap bmp = Bitmap.createBitmap(100,120,config);
@@ -169,8 +172,8 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
         for(int i=0; i<=100; i++)
             canvas.drawLine(i,100,50,120,color);
 
-        canvas.drawText(userName,0,40,color2);
-        ISystem.getImage(canvas,"",getApplicationContext());
+        canvas.drawText(friend.getName(),0,40,color2);
+        ISystem.getImage(canvas,friend,getApplicationContext());
 
         return bmp;
     }
@@ -180,6 +183,31 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
     {
         shouldRefreshMap=false;
         super.onStop();
+    }
+    private void startUpdating()
+    {
+        final String MYPREFS = "MYPREFS";
+        SharedPreferences sp = getSharedPreferences(MYPREFS, Context.MODE_PRIVATE);
+
+        if(sp.getString("serviceStarted",null)!=null)
+        {
+            Toast.makeText(this,"ALready Set",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("serviceStarted","yes");
+            editor.commit();
+
+            new Thread(){
+                public void run() {
+                    Intent intent = new Intent(MapActivity.this, LocationService.class);
+                    startService(intent);
+                };
+            }.start();
+
+            Toast.makeText(this,"Set",Toast.LENGTH_SHORT).show();
+        }
     }
     public static Activity getInstance()
     {

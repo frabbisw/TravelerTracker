@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -31,6 +32,7 @@ public class SettingsActivity extends BottomBarActivity {
     private EditText geteditname;
     private Button logoutBtn;
     private Button saveChangeBtn;
+    private Button uploadPhotoBtn;
     private CircleImageView myimageview;
     private SwitchCompat mode;
     private Spinner time;
@@ -53,6 +55,10 @@ public class SettingsActivity extends BottomBarActivity {
 
                 case R.id.logout:
                     logoutFromAccount();
+                    break;
+
+                case R.id.uploadPhoto:
+                    uploadPhoto();
                     break;
             }
         }
@@ -82,6 +88,9 @@ public class SettingsActivity extends BottomBarActivity {
         saveChangeBtn = (Button) findViewById(R.id.saveChange);
         saveChangeBtn.setOnClickListener(clickListener);
 
+        uploadPhotoBtn = (Button) findViewById(R.id.uploadPhoto);
+        uploadPhotoBtn.setOnClickListener(clickListener);
+
         myimageview = (CircleImageView) findViewById(R.id.profilePhoto);
         myimageview.setOnClickListener(clickListener);
 
@@ -99,8 +108,10 @@ public class SettingsActivity extends BottomBarActivity {
         });
     }
 
-    protected void saveNewChange() {
-
+    protected void saveNewChange()
+    {
+        //uploadPhoto();
+        /*
         SharedPreferences sp = getSharedPreferences("ProfileName", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("ProfileName", geteditname.getText().toString());
@@ -108,6 +119,7 @@ public class SettingsActivity extends BottomBarActivity {
 
         Toast.makeText(this, "Changes Saved !", Toast.LENGTH_SHORT).show();
         return;
+        */
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -155,11 +167,12 @@ public class SettingsActivity extends BottomBarActivity {
         }
     }
 
-    public void uploadPhoto(View view)
+    protected void uploadPhoto()
     {
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
-        ISystem.sendImageToServer(account, pp,getApplicationContext());
+        ISystem.sendImageToServer(account, pp, getApplicationContext());
 
+        //Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
     }
 
     public String getRealPathFromURI(Context context, Uri contentUri) {

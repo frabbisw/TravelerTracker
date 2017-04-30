@@ -100,17 +100,16 @@ public class ISystem
                     @Override
                     public void onResponse(String response) {
 
-                        if (response.equals(""))
+                        if (response.length()<3)
+                        {
                             Toast.makeText(activity, "id and password not matched",Toast.LENGTH_LONG).show();
+                        }
                         else
                         {
-                            Context context = activity.getApplicationContext();
-                            String [] str = response.split(",");
-                            Account account = new Account(str[0], str[1], str[2]);
+                            Account account = new Gson().fromJson(response, Account.class);
+                            saveAccountInCache(activity.getApplicationContext(),account);
 
-                            saveAccountInCache(context,account);
-
-                            Intent intent = new Intent(context, MapActivity.class);
+                            Intent intent = new Intent(activity.getApplicationContext(), MapActivity.class);
                             activity.startActivity(intent);
                             activity.finish();
                         }
@@ -171,22 +170,26 @@ public class ISystem
 
         Volley.newRequestQueue(context).add(request);
     }
-    public static void update(Context context, final Account account)
+    public static void update(final Context context, final Account account)
     {
+        Log.e("try","to update");
         String url = Constants.UpdateIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
                     @Override
-                    public void onResponse(String response) {
-
+                    public void onResponse(String response)
+                    {
+                        Log.e("ISystem",response);
+                        ISystem.saveAccountInCache(context, account);
                     }
                 },
                 new Response.ErrorListener()
                 {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        ISystem.saveAccountInCache(context, account);
                     }
                 })
             {
@@ -204,6 +207,7 @@ public class ISystem
     }
     public static void sendImageToServer(final Account account, Bitmap bitmap, final Context context)
     {
+        bitmap = Bitmap.createScaledBitmap(bitmap, 250, 250, false);
         final String image = getStringImage(bitmap);
         String url = Constants.uploadPhotoIp;
 
@@ -212,13 +216,15 @@ public class ISystem
                 {
                     @Override
                     public void onResponse(String response) {
-
+                        account.setImgPath(response);
+                        saveAccountInCache(context, account);
                     }
                 },
                 new Response.ErrorListener()
                 {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
 
                     }
                 })
@@ -233,6 +239,7 @@ public class ISystem
             }
         };
         Volley.newRequestQueue(context).add(request);
+
     }
     public static String getStringImage(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -241,9 +248,9 @@ public class ISystem
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-    public static void getImage(final Canvas canvas, String path, final Context context)
+    public static void getImage(final Canvas canvas, Account account, final Context context)
     {
-        String url = "http://cdn.history.com/sites/2/2013/11/113634012-AB.jpeg";
+        String url = Constants.DestinationIp+account.imgPath;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 

@@ -141,8 +141,8 @@ public class ProfileMapActivity extends BottomBarActivity implements OnMapReadyC
     public Bitmap customBitmap(CheckedInPosition cip)
     {
         Bitmap icon;
-        if(cip.type=="home")    icon= BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_home);
-        else if(cip.type=="work")   icon= BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_work);
+        if(cip.type.equals("home"))    icon= BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_home);
+        else if(cip.type.equals("work"))   icon= BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_work);
         else    icon= BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_temp);
         icon = Bitmap.createScaledBitmap(icon, 90, 90, false);
 
