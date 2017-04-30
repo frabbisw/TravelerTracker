@@ -566,6 +566,45 @@ public class ISystem
         Volley.newRequestQueue(context).add(request);
     }
 
+    public static void loadRequestedUsers(Context context, final String id, final ArrayList<Account>accounts)
+    {
+        String url = Constants.loadRequestedUsersIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            if(jsonArray!=null)
+                            {
+                                    for(int i=0; i<jsonArray.length(); i++)
+                                        accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId1,id);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
 
     private static void setDefaults(String key, String value, Context context)
     {
