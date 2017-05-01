@@ -140,8 +140,10 @@ public class BottomBarActivity extends AppCompatActivity {
 
     }
 
+    /*
     protected ArrayList<User> getSearchResult(String searchKey) {
 
+        /
         ArrayList<Account> account = new ArrayList<>();
         ArrayList<User> result = new ArrayList<>();
 
@@ -153,6 +155,7 @@ public class BottomBarActivity extends AppCompatActivity {
 
         return result;
     }
+    */
 
     protected ArrayList<Notification> getNotified(){
 

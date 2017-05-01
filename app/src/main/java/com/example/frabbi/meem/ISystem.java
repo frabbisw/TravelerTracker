@@ -365,7 +365,7 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
-    public static void searchAccount(Context context, final String key, final ArrayList<Account>accounts)
+    public static void searchAccount(Context context, final String key, final VolleyCallBack volleyCallBack)
     {
         final Account account = loadAccountFromCache(context);
         String url = Constants.searchAccountIp;
@@ -375,19 +375,8 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-                        try
-                        {
-                            JSONArray jsonArray = new JSONArray(response);
-                            if(jsonArray!=null)
-                            {
-                                for(int i=0; i<jsonArray.length(); i++)
-                                    accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
-                            }
-                        }
-                        catch (JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
+                        Log.e("response",response);
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()

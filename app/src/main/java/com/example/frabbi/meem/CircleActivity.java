@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class CircleActivity extends BottomBarActivity implements ClickCallback, View.OnClickListener {
@@ -75,8 +80,35 @@ public class CircleActivity extends BottomBarActivity implements ClickCallback, 
         int size = foundUser.size();
         //if(size > 0) size++;
         adapter.removeItems(size);
-        foundUser = getSearchResult(searchID);
-        adapter.addItems(foundUser);
+
+        //sorry meem, i had to change these codes :(
+        final ArrayList<Account> accounts = new ArrayList<>();
+        final ArrayList<User> result = new ArrayList<>();
+
+        ISystem.searchAccount(getApplicationContext(), searchID, new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                try
+                {
+                    JSONArray jsonArray = new JSONArray(response);
+                    if(jsonArray!=null)
+                    {
+                        for(int i=0; i<jsonArray.length(); i++)
+                            accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+                        for (Account a : accounts)
+                            foundUser.add(User.getUserTest(a, Constants.SEARCH));
+                        adapter.addItems(foundUser);
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //foundUser = getSearchResult(searchID);
+        //adapter.addItems(foundUser);
         //adapter.addLabel(new Label("Showing results for " + searchID));
     }
 
