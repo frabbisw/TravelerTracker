@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -34,12 +35,15 @@
             android:label="Check In" />
         <activity
             android:name=".MapActivity"
-            android:label="Map"
-            android:launchMode="singleInstance" />
+            android:label="Map" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBqO3uz42uIj5GVNoWYhTtRPpCrfUiW5Pg" />
+
+        <activity
+            android:name=".ProfileActivity"
+            android:label="User Profile" />
 
         <activity
             android:name=".ProfileMapActivity"
@@ -59,7 +63,10 @@
         <service
             android:name=".LocationService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+
+        </service>
+
     </application>
 
 </manifest> <!-- android:label="@string/app_name" -->

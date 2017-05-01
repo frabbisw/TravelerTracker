@@ -122,16 +122,16 @@ public class ISystem
                         Toast.makeText(activity,"Network not available", Toast.LENGTH_LONG).show();
                     }
                 })
-                {
-                    protected Map<String,String> getParams()
-                    {
-                        Map <String, String> values = new HashMap<String, String>();
-                        values.put(Constants.ConstantId,id);
-                        values.put(Constants.ConstantPassword,password);
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,id);
+                values.put(Constants.ConstantPassword,password);
 
-                        return values;
-                    }
-                };
+                return values;
+            }
+        };
 
         Volley.newRequestQueue(activity.getApplicationContext()).add(request);
     }
@@ -192,7 +192,7 @@ public class ISystem
                         ISystem.saveAccountInCache(context, account);
                     }
                 })
-            {
+        {
             protected Map<String,String> getParams()
             {
                 Map <String, String> values = new HashMap<String, String>();
@@ -339,8 +339,8 @@ public class ISystem
                             JSONArray jsonArray = new JSONArray(response);
                             if(jsonArray!=null)
                             {
-                                    for(int i=0; i<jsonArray.length(); i++)
-                                        checkedInPositions.add(new Gson().fromJson(jsonArray.getString(i), CheckedInPosition.class));
+                                for(int i=0; i<jsonArray.length(); i++)
+                                    checkedInPositions.add(new Gson().fromJson(jsonArray.getString(i), CheckedInPosition.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -565,6 +565,8 @@ public class ISystem
                 return values;
             }
         };
+
+
         Volley.newRequestQueue(context).add(request);
     }
 
@@ -581,8 +583,8 @@ public class ISystem
                             JSONArray jsonArray = new JSONArray(response);
                             if(jsonArray!=null)
                             {
-                                    for(int i=0; i<jsonArray.length(); i++)
-                                        accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+                                for(int i=0; i<jsonArray.length(); i++)
+                                    accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -41,6 +41,7 @@
         android:textColor="@color/text"
         android:textColorHint="@color/text"
         android:drawableLeft="@drawable/ic_account_circle_24dp"
+        android:drawablePadding="8dp"
         />
 
     <EditText
@@ -54,6 +55,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:textColor="@color/text"
+        android:drawablePadding="8dp"
         android:drawableLeft="@drawable/ic_lock_outline_24dp"
         />
 

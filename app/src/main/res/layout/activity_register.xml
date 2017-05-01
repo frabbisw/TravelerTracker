@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:overScrollMode="never">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -7,6 +14,17 @@
     android:orientation="vertical"
     android:padding="32dp"
     >
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="TRAVELER TRACKER"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textColor="@color/text"
+        android:layout_marginBottom="30dp"
+        />
 
     <EditText
         android:id="@+id/newuserid"
@@ -16,10 +34,11 @@
         android:inputType="text"
         android:textSize="16sp"
         android:gravity="center_vertical"
-        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_account_circle_24dp"
         />
 
@@ -34,6 +53,8 @@
         android:orientation="vertical"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_account_box_white_24dp"
         />
 
@@ -48,6 +69,8 @@
         android:orientation="vertical"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="8dp"
         android:drawableLeft="@drawable/ic_lock_outline_24dp"
         />
 
@@ -62,6 +85,8 @@
         android:orientation="vertical"
         android:textColor="@color/text"
         android:textColorHint="@color/text"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="8dp"
         android:drawableLeft="@drawable/ic_lock_outline_24dp"
         />
 
@@ -72,7 +97,7 @@
         android:background="@color/loginbutton"
         android:hint="Finish"
         android:textSize="16sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:textColorHint="@color/text"
         />
 
@@ -84,8 +109,9 @@
         android:textSize="20sp"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/text"
         />
 
 </LinearLayout>
+    </ScrollView>

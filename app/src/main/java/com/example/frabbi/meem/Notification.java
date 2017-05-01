@@ -1,11 +1,11 @@
 package com.example.frabbi.meem;
 
 /**
- * Created by root on 5/1/17.
+ * Created by imm on 4/25/2017.
  */
 
-public class Notification
-{
+public class Notification {
+
     String id;
     String msg;
 
@@ -13,4 +13,5 @@ public class Notification
     {
         return this.msg;
     }
+
 }

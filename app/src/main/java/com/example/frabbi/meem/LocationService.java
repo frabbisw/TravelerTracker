@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -95,6 +96,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
             account.setLatitude(mCurrentLocation.getLatitude());
             account.setLongitude(mCurrentLocation.getLongitude());
             ISystem.update(getApplicationContext(), account);
+            Toast.makeText(getApplicationContext(), mCurrentLocation.getLatitude()+" - "+ mCurrentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
         }
     }
 

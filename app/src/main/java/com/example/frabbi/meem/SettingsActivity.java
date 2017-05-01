@@ -39,7 +39,6 @@ public class SettingsActivity extends BottomBarActivity {
     Bitmap pp=null;
 
 
-
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override

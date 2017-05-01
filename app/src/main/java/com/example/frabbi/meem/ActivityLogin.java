@@ -1,9 +1,6 @@
 package com.example.frabbi.meem;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +20,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     private FrameLayout contentFrame;
     private LinearLayout loginContent;
-    private LinearLayout registerContent;
+    private View registerContent;
     private TextView createAccount;
     private Button loginBtn;
     private Button register;
@@ -80,7 +77,7 @@ public class ActivityLogin extends AppCompatActivity {
 
         contentFrame = (FrameLayout) findViewById(R.id.content_frame);
         loginContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_login, contentFrame, false);
-        registerContent = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.activity_register, contentFrame, false);
+        registerContent = LayoutInflater.from(this).inflate(R.layout.activity_register, contentFrame, false);
         showLoginPage();
 
         createAccount = (TextView) loginContent.findViewById(R.id.text_create_account);
@@ -118,7 +115,7 @@ public class ActivityLogin extends AppCompatActivity {
         String id=getuserid.getText().toString();
         String password=getpassword.getText().toString();
 
-        //startActivity(new Intent(ActivityLogin.this, MapActivity.class));
+        //startActivity(new Intent(ActivityLogin.this, CircleActivity.class));
         //finish();
 
         ISystem.loadAccount(this, id, password);
@@ -158,7 +155,6 @@ public class ActivityLogin extends AppCompatActivity {
         String password = getnewpassword.getText().toString();
 
         ISystem.saveAccount(this, new Account(id,name,password));
-
     }
 
     private void showRegPage(){

@@ -41,4 +41,19 @@ public class Constants
     public static final String ConstantLongitude = "longitude";
     public static final String ConstantDate = "date";
     public static final String CheckInType = "type";
+
+    public static final String RequestExtra = "reqExtra";
+    public static final String FriendExtra = "frndExtra";
+    public static final String CircleExtra = "crclExtra";
+    public static final String UserType="userType";
+    public static final String FRIEND="friend";
+    public static final String SEARCH="search";
+    public static final String REQUEST="request";
+    public static final String NOTIFICATION = "Notification";
+
+    public static final int TypeFriend=1;
+    public static final int TypeOutOfCircle=2;
+    public static final int TypeRequested=3;
+
+    public static final String USERTEST = "usertest";
 }
