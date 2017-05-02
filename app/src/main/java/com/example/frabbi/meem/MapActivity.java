@@ -192,7 +192,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
 
         if(sp.getString("serviceStarted",null)!=null)
         {
-            Toast.makeText(this,"ALready Set",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"ALready Set",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -207,7 +207,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
                 };
             }.start();
 
-            Toast.makeText(this,"Set",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Set",Toast.LENGTH_SHORT).show();
         }
     }
     public static Activity getInstance()
