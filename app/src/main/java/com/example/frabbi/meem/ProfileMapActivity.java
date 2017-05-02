@@ -128,6 +128,13 @@ public class ProfileMapActivity extends BottomBarActivity implements OnMapReadyC
                         }
                     });
                 }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(checkedInPositions.get(checkedInPositions.size()-1).getPosition()));
+                            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                        }
+                    });
 
                 try {
                     Thread.sleep(30 * 1000);

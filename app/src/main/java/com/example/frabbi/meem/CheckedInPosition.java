@@ -1,5 +1,7 @@
 package com.example.frabbi.meem;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by root on 4/19/17.
  */
@@ -27,6 +29,10 @@ public class CheckedInPosition
         this.date=date;
         this.id=id;
         this.type=type;
+    }
+    public LatLng getPosition()
+    {
+        return new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
     }
     public double getLatitude()
     {
