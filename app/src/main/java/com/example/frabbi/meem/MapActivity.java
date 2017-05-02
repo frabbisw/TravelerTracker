@@ -168,7 +168,8 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
         color2.setColor(getResources().getColor(R.color.colorAccent));
         color2.setTextSize(20);
 
-        canvas.drawRect(0,0,100,100,color);
+        canvas.drawCircle(0,0,60,color);
+        //canvas.drawRect(0,0,100,100,color);
         for(int i=0; i<=100; i++)
             canvas.drawLine(i,100,50,120,color);
 

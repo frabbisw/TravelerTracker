@@ -30,6 +30,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SettingsActivity extends BottomBarActivity {
 
     private EditText geteditname;
+    private EditText getnewpassword;
+    private EditText confirmnewpassword;
     private Button logoutBtn;
     private Button saveChangeBtn;
     private Button uploadPhotoBtn;
@@ -59,8 +61,19 @@ public class SettingsActivity extends BottomBarActivity {
                 case R.id.uploadPhoto:
                     uploadPhoto();
                     break;
+
+                case R.id.change_password:
+                    changePassword();
+                    confirmnewpassword.setVisibility(View.VISIBLE);
+                    break;
+
+                case R.id.confirm_changed_password:
+                    matchPassword();
+                    break;
+
             }
         }
+
     };
 
 
@@ -104,6 +117,12 @@ public class SettingsActivity extends BottomBarActivity {
         geteditname = (EditText) findViewById(R.id.editname);
         geteditname.setOnClickListener(clickListener);
 
+        getnewpassword = (EditText) findViewById(R.id.change_password);
+        getnewpassword.setOnClickListener(clickListener);
+
+        confirmnewpassword = (EditText) findViewById(R.id.confirm_changed_password);
+        confirmnewpassword.setOnClickListener(clickListener);
+
         time = (Spinner) findViewById(R.id.time);
 
         mode = (SwitchCompat) findViewById(R.id.auto);
@@ -128,6 +147,19 @@ public class SettingsActivity extends BottomBarActivity {
         return;
         */
     }
+
+    private void matchPassword() {
+        if(!confirmnewpassword.getText().toString().equals(getnewpassword.getText().toString())){
+            Toast.makeText(this, "Password not mathced. Try again", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+
+
+    protected void changePassword() {
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     protected void logoutFromAccount() {

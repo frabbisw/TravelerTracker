@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
-            android:background="@color/loginbutton"
+            android:background="@drawable/button_bg"
             android:hint="Upload Photo"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
@@ -79,7 +79,7 @@
             android:layout_marginTop="8dp"
             />
 
-        <TextView
+        <EditText
             android:id="@+id/change_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +93,26 @@
             android:textColor="@color/text"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/confirm_changed_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_lock_outline_24dp"
+            android:drawablePadding="8dp"
+            android:orientation="vertical"
+            android:padding="4dp"
+            android:text=" Confirm New Password  "
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
+            android:textSize="16sp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            />
+
 
         <View
             android:layout_width="match_parent"
@@ -182,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
-            android:background="@color/loginbutton"
+            android:background="@drawable/button_bg"
             android:hint="Save Change"
             android:textColorHint="@color/text"
             android:textSize="16sp" />
@@ -192,7 +212,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
-            android:background="@color/loginbutton"
+            android:background="@drawable/button_bg"
             android:hint="Log Out"
             android:textColorHint="@color/text"
             android:textSize="16sp" />

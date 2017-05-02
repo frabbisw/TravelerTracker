@@ -3,17 +3,10 @@
     <color name="colorPrimary">#558B2F</color>
     <color name="colorPrimaryDark">#004D40</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="custom1">#7CB342</color>
-    <color name="custom2">#7CB342</color>
-    <color name="custom3">#7CB342</color>
-    <color name="custom4">#7CB342</color>
     <color name="white">#ffffff </color>
     <color name="text">#FFFFFF</color>
-    <color name="text2">#888888</color>
 
     <color name="background"> #689F38 </color>
     <color name="loginbutton"> #33691E </color>
-    <color name="underline"> #FFFFFF </color>
-    <color name="up">#8BC34A</color>
 
 </resources>
