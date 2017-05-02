@@ -1,5 +1,6 @@
 package com.example.frabbi.meem;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class ProfileActivity extends BottomBarActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_profile, frameContent);
 
+        profile = getIntent().getParcelableExtra(Constants.USERTEST);
+
         add = (Button) findViewById(R.id.Add_btn);
         add.setOnClickListener(clickListener);
 
@@ -36,8 +39,14 @@ public class ProfileActivity extends BottomBarActivity {
 
         username = (TextView) findViewById(R.id.text_UserName);
         userphoto = (ImageView) findViewById(R.id.UserPhoto);
+        ISystem.getImagebyUrl(getApplicationContext(), Constants.DestinationIp + profile.getPhotoURL(), new VolleyImageCallBack() {
+            @Override
+            public void success(Bitmap response)
+            {
+                userphoto.setImageBitmap(response);
+            }
+        });
 
-        profile = getIntent().getParcelableExtra(Constants.USERTEST);
         if(profile.getType().equals(Constants.FRIEND)) showProfileAsFriend();
         if(profile.getType().equals(Constants.SEARCH)) showProfileAsOutOfCircle();
         if(profile.getType().equals(Constants.REQUEST)) showProfileFromRequest();

@@ -186,6 +186,7 @@ public class MapActivity extends BottomBarActivity implements OnMapReadyCallback
     }
     private void startUpdating()
     {
+        ISystem.update(getApplicationContext(), ISystem.loadAccountFromCache(getApplicationContext()));
         final String MYPREFS = "MYPREFS";
         SharedPreferences sp = getSharedPreferences(MYPREFS, Context.MODE_PRIVATE);
 

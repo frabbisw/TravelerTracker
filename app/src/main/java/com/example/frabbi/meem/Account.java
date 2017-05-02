@@ -41,6 +41,11 @@ public class Account implements Serializable {
     }
     public String getImagePath() { return this.imgPath; }
 
+    public void setLocation(DeviceLocation deviceLocation)
+    {
+        this.latitude=deviceLocation.latitude;
+        this.longitude=deviceLocation.longitude;
+    }
     public void setImgPath(String imgPath)
     {
         this.imgPath=imgPath;

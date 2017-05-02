@@ -81,6 +81,8 @@ public class SettingsActivity extends BottomBarActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             checkResourcePermission();
 
+        Account myAccount = ISystem.loadAccountFromCache(getApplicationContext());
+
         logoutBtn = (Button) findViewById(R.id.logout);
         logoutBtn.setOnClickListener(clickListener);
 
@@ -91,6 +93,12 @@ public class SettingsActivity extends BottomBarActivity {
         uploadPhotoBtn.setOnClickListener(clickListener);
 
         myimageview = (CircleImageView) findViewById(R.id.profilePhoto);
+        ISystem.getImagebyUrl(getApplicationContext(), Constants.DestinationIp + myAccount.getImagePath(), new VolleyImageCallBack() {
+            @Override
+            public void success(Bitmap response) {
+                myimageview.setImageBitmap(response);
+            }
+        });
         myimageview.setOnClickListener(clickListener);
 
         geteditname = (EditText) findViewById(R.id.editname);
@@ -170,8 +178,6 @@ public class SettingsActivity extends BottomBarActivity {
     {
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         ISystem.sendImageToServer(account, pp, getApplicationContext());
-
-        //Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
     }
 
     public String getRealPathFromURI(Context context, Uri contentUri) {

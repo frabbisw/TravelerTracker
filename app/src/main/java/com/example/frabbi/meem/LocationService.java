@@ -84,18 +84,20 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
         }
         //Requests location updates from the FusedLocationApi.
         startLocationUpdates();
-
     }
 
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
 
+        ISystem.saveDeviceLocationInCache(getApplicationContext(), new DeviceLocation(location.getLatitude(), location.getLongitude()));
+
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         if(account!=null){
             account.setLatitude(mCurrentLocation.getLatitude());
             account.setLongitude(mCurrentLocation.getLongitude());
             ISystem.update(getApplicationContext(), account);
+            ISystem.saveAccountInCache(getApplicationContext(), account);
             Toast.makeText(getApplicationContext(), mCurrentLocation.getLatitude()+" - "+ mCurrentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
         }
     }

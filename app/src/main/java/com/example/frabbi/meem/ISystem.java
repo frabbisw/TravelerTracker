@@ -218,6 +218,7 @@ public class ISystem
                     public void onResponse(String response) {
                         account.setImgPath(response);
                         saveAccountInCache(context, account);
+                        Toast.makeText(context, "Uploaded", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener()
@@ -650,6 +651,32 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
+    public static void getImagebyUrl(Context context, String url, final VolleyImageCallBack volleyImageCallBack)
+    {
+        ImageRequest imageRequest = new ImageRequest(
+                url, // Image URL
+                new Response.Listener<Bitmap>() { // Bitmap listener
+                    @Override
+                    public void onResponse(Bitmap response)
+                    {
+                        volleyImageCallBack.success(response);
+                    }
+                },
+                0, // Image width
+                0, // Image height
+                ImageView.ScaleType.CENTER_CROP, // Image scale type
+                Bitmap.Config.RGB_565, //Image decode configuration
+                new Response.ErrorListener() { // Error listener
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Do something with error response
+                        error.printStackTrace();
+                    }
+                }
+        );
+
+        Volley.newRequestQueue(context).add(imageRequest);
+    }
 
     private static void setDefaults(String key, String value, Context context)
     {
@@ -665,6 +692,13 @@ public class ISystem
     }
     public static void saveAccountInCache(Context context, Account account)
     {
+        String jsonL = getDefaults(Constants.ConstantLocation,context);
+        if(jsonL!=null)
+        {
+            DeviceLocation deviceLocation = new Gson().fromJson(jsonL, DeviceLocation.class);
+            account.setLocation(deviceLocation);
+        }
+
         String json = new Gson().toJson(account);
         setDefaults(Constants.ConstantAccount, json, context);
     }
@@ -674,6 +708,11 @@ public class ISystem
         if(json==null|json=="")  return null;
 
         return new Gson().fromJson(json, Account.class);
+    }
+    public static void saveDeviceLocationInCache(Context context, DeviceLocation deviceLocation)
+    {
+        String json = new Gson().toJson(deviceLocation);
+        setDefaults(Constants.ConstantLocation, json, context);
     }
     public static void resetAccountInCache(Context context)
     {
