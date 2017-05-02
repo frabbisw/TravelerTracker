@@ -59,7 +59,7 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_account_circle_24dp"
             android:drawablePadding="8dp"
-            android:hint="Nawshin Rahman"
+            android:hint="Profile Name"
             android:inputType="text"
             android:orientation="vertical"
             android:paddingBottom="8dp"
