@@ -20,8 +20,8 @@ public class BottomBarActivity extends AppCompatActivity {
     protected TextView notificationIcon;
     protected Account self;
     protected int totalCount;
-    protected ArrayList<User> requests ;
-    protected ArrayList<Notification> notifications;
+    protected ArrayList<User> requests=new ArrayList<>();
+    protected ArrayList<Notification> notifications=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class BottomBarActivity extends AppCompatActivity {
         updateNotificationIcon();
     }
     protected void updateNotificationIcon() {
-        notifications = getNotified();
+        /*notifications = getNotified();
         requests = getRequest();
         totalCount = requests.size()+notifications.size();
 
@@ -61,6 +61,7 @@ public class BottomBarActivity extends AppCompatActivity {
             notificationIcon.setText( "" + totalCount);
         }
         else notificationIcon.setVisibility(View.GONE);
+        */
     }
 
     protected View.OnClickListener clickListener = new View.OnClickListener() {
@@ -109,6 +110,7 @@ public class BottomBarActivity extends AppCompatActivity {
         finish();
     }
 
+    /*
     protected ArrayList<User> getRequest() {
 
         ArrayList<Account> account = new ArrayList<>();
@@ -123,8 +125,9 @@ public class BottomBarActivity extends AppCompatActivity {
         return result;
 
     }
+    */
 
-
+    /*
     protected ArrayList<User> getFriends() {
 
         ArrayList<Account> account = new ArrayList<>();
@@ -139,6 +142,7 @@ public class BottomBarActivity extends AppCompatActivity {
         return result;
 
     }
+    */
 
     /*
     protected ArrayList<User> getSearchResult(String searchKey) {
@@ -157,11 +161,13 @@ public class BottomBarActivity extends AppCompatActivity {
     }
     */
 
+    /*
     protected ArrayList<Notification> getNotified(){
 
         ArrayList<Notification> notificationList = new ArrayList<>();
         ISystem.getNotifications(getApplicationContext(),self.getId(),notificationList);
         return notificationList;
     }
+    */
 
 }

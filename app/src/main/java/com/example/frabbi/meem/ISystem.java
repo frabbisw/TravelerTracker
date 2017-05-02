@@ -99,7 +99,7 @@ public class ISystem
                 {
                     @Override
                     public void onResponse(String response) {
-
+                        Log.e("length",response.length()+"");
                         if (response.length()<3)
                         {
                             Toast.makeText(activity, "id and password not matched",Toast.LENGTH_LONG).show();
@@ -326,6 +326,36 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
+    public static void loadMyFriends(final Account account, Context context, final VolleyCallBack volleyCallBack)
+    {
+        String url = Constants.loadMyFriendsIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        volleyCallBack.success(response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,account.id);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
+    }
     public static void loadCheckedInPositions(final Account account, final ArrayList<CheckedInPosition>checkedInPositions, Context context)
     {
         String url = Constants.loadCheckedInsIp;
@@ -398,7 +428,7 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
-    public static void requestFriend(Context context, final String id1, final String id2)
+    public static void requestFriend(Context context, final String id1, final String id2, final VolleyCallBack volleyCallBack)
     {
         String url = Constants.requestFriendIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -407,7 +437,7 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()
@@ -429,7 +459,7 @@ public class ISystem
         };
         Volley.newRequestQueue(context).add(request);
     }
-    public static void acceptRequest(Context context, final String id1, final String id2)
+    public static void acceptRequest(Context context, final String id1, final String id2, final VolleyCallBack volleyCallBack)
     {
         String url = Constants.acceptRequestIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -438,7 +468,7 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()
@@ -461,7 +491,7 @@ public class ISystem
         Volley.newRequestQueue(context).add(request);
     }
 
-    public static void declineRequest(Context context, final String id1, final String id2)
+    public static void declineRequest(Context context, final String id1, final String id2, final VolleyCallBack volleyCallBack)
     {
         String url = Constants.declineRequestIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -470,7 +500,7 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()
@@ -559,7 +589,7 @@ public class ISystem
         Volley.newRequestQueue(context).add(request);
     }
 
-    public static void loadRequestedUsers(Context context, final String id, final ArrayList<Account>accounts)
+    public static void loadRequestedUsers(Context context, final String id, final VolleyCallBack volleyCallBack)
     {
         String url = Constants.loadRequestedUsersIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -568,16 +598,7 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            if(jsonArray!=null)
-                            {
-                                for(int i=0; i<jsonArray.length(); i++)
-                                    accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()
@@ -599,7 +620,7 @@ public class ISystem
         Volley.newRequestQueue(context).add(request);
     }
 
-    public static void getNotifications(Context context, final String id, final ArrayList<Notification>notifications)
+    public static void getNotifications(Context context, final String id, final VolleyCallBack volleyCallBack)
     {
         String url = Constants.getNotificationsIp;
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -608,16 +629,7 @@ public class ISystem
                     @Override
                     public void onResponse(String response)
                     {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            if(jsonArray!=null)
-                            {
-                                for(int i=0; i<jsonArray.length(); i++)
-                                    notifications.add(new Gson().fromJson(jsonArray.getString(i), Notification.class));
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        volleyCallBack.success(response);
                     }
                 },
                 new Response.ErrorListener()

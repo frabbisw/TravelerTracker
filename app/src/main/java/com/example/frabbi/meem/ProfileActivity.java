@@ -110,10 +110,14 @@ public class ProfileActivity extends BottomBarActivity {
     }
 
     protected void confirmFriend() {
-        ISystem.acceptRequest(getApplicationContext(), self.getId(), profile.getID());
-        Toast.makeText(this, "Friendship Confirmed !", Toast.LENGTH_SHORT).show();
-        showProfileAsFriend();
-        updateNotificationIcon();
+        ISystem.acceptRequest(getApplicationContext(), self.getId(), profile.getID(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                Toast.makeText(getApplicationContext(), "Friendship Confirmed !", Toast.LENGTH_SHORT).show();
+                showProfileAsFriend();
+                updateNotificationIcon();
+            }
+        });
     }
 
     private void removeFriend() {
@@ -125,8 +129,12 @@ public class ProfileActivity extends BottomBarActivity {
 
     private void addFriend() {
 
-        ISystem.requestFriend(getApplicationContext(),self.getId(),profile.getID());
-        showProfileAsRequested();
+        ISystem.requestFriend(getApplicationContext(), self.getId(), profile.getID(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                showProfileAsRequested();
+            }
+        });
 
     }
 

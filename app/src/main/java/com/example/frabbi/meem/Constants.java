@@ -6,12 +6,13 @@ package com.example.frabbi.meem;
 
 public class Constants
 {
-    public static final String DestinationIp="http://192.168.43.86/mock/";
+    public static final String DestinationIp="http://10.100.105.27/mock/";
     public static final String LoginIp=DestinationIp+"login.php";
     public static final String RegistrationIp=DestinationIp+"registration.php";
     public static final String CheckinIp=DestinationIp+"checkIn.php";
     public static final String UpdateIp=DestinationIp+"update.php";
     public static final String loadFriendsIp=DestinationIp+"getFriendsPositions.php";
+    public static final String loadMyFriendsIp=DestinationIp+"getMyFriends.php";
     public static final String loadCheckedInsIp=DestinationIp+"getCheckedIns.php";
     public static final String uploadPhotoIp=DestinationIp+"uploadPhoto.php";
 

@@ -47,30 +47,101 @@ public class CircleActivity extends BottomBarActivity implements ClickCallback, 
         search_Btn = (Button) findViewById(R.id.search_btn);
         search_Btn.setOnClickListener(this);
 
-        ArrayList<User> requests = getRequest();
-        ArrayList<User> friends = getFriends();
-        ArrayList<Notification> notifications = getNotified();
-
-        if(notifications.size() > 0){
-            items.add(new Label("Confirmations"));
-            items.addAll(notifications);
-        }
-
-        if(requests.size() > 0) {
-            items.add(new Label("Friend requests"));
-            items.addAll(requests);
-        }
-
-        if(friends.size() > 0) {
-            items.add(new Label("My Friends"));
-            items.addAll(friends);
-        }
+        addNotificationToAdapter();
+        addRequestToAdapter();
+        addFriendsToAdapter();
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         tempFriendlist.setLayoutManager(manager);
 
         adapter = new FriendListAdapter(this, items, this);
         tempFriendlist.setAdapter(adapter);
+    }
+
+    private  void addNotificationToAdapter()
+    {
+        final ArrayList<Notification> notifications = new ArrayList<>();
+
+        ISystem.getNotifications(getApplicationContext(), self.getId(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    if(jsonArray!=null)
+                    {
+                        for(int i=0; i<jsonArray.length(); i++)
+                            notifications.add(new Gson().fromJson(jsonArray.getString(i), Notification.class));
+
+                        if(notifications.size() > 0){
+                            items.add(new Label("Confirmations"));
+                            items.addAll(notifications);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void addRequestToAdapter()
+    {
+        final ArrayList<Account> accounts = new ArrayList<>();
+        final ArrayList<User> requests = new ArrayList<>();
+
+        ISystem.loadRequestedUsers(getApplicationContext(), self.getId(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    if(jsonArray!=null)
+                    {
+                        for(int i=0; i<jsonArray.length(); i++)
+                            accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+
+                        for (Account a : accounts)
+                            requests.add(User.getUserTest(a, Constants.REQUEST));
+
+                        if(requests.size() > 0) {
+                            items.add(new Label("Friend requests"));
+                            items.addAll(requests);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void addFriendsToAdapter()
+    {
+        final ArrayList<Account> accounts = new ArrayList<>();
+        final ArrayList<User> friends = new ArrayList<>();
+
+        ISystem.loadMyFriends(self, getApplicationContext(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    if(jsonArray!=null)
+                    {
+                        for(int i=0; i<jsonArray.length(); i++)
+                            accounts.add(new Gson().fromJson(jsonArray.getString(i), Account.class));
+
+                        for (Account a : accounts)
+                            friends.add(User.getUserTest(a, Constants.FRIEND));
+
+                        if(friends.size() > 0) {
+                            items.add(new Label("My Friends"));
+                            items.addAll(friends);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void search() {
@@ -84,6 +155,7 @@ public class CircleActivity extends BottomBarActivity implements ClickCallback, 
         //sorry meem, i had to change these codes :(
         final ArrayList<Account> accounts = new ArrayList<>();
         final ArrayList<User> result = new ArrayList<>();
+        foundUser=new ArrayList<>();
 
         ISystem.searchAccount(getApplicationContext(), searchID, new VolleyCallBack() {
             @Override
@@ -112,19 +184,28 @@ public class CircleActivity extends BottomBarActivity implements ClickCallback, 
         //adapter.addLabel(new Label("Showing results for " + searchID));
     }
 
-
     @Override
     public void onAcceptClick(User request) {
-        Toast.makeText(this, "Request Accepted !", Toast.LENGTH_SHORT).show();
-        ISystem.acceptRequest(getApplicationContext(), self.getId(), request.getID());
-        updateNotificationIcon();
+        ISystem.acceptRequest(getApplicationContext(), self.getId(), request.getID(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                Toast.makeText(getApplicationContext(), "Request Accepted !", Toast.LENGTH_SHORT).show();
+                updateNotificationIcon();
+            }
+        });
+
     }
 
     @Override
     public void onIgnoreClick(User request) {
-        Toast.makeText(this, "Request Ignored !", Toast.LENGTH_SHORT).show();
-        ISystem.declineRequest(getApplicationContext(), self.getId(), request.getID());
-        updateNotificationIcon();
+
+        ISystem.declineRequest(getApplicationContext(), self.getId(), request.getID(), new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                Toast.makeText(getApplicationContext(), "Request Ignored !", Toast.LENGTH_SHORT).show();
+                updateNotificationIcon();
+            }
+        });
     }
 
 
