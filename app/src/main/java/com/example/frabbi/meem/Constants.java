@@ -15,6 +15,7 @@ public class Constants
     public static final String loadMyFriendsIp=DestinationIp+"getMyFriends.php";
     public static final String loadCheckedInsIp=DestinationIp+"getCheckedIns.php";
     public static final String uploadPhotoIp=DestinationIp+"uploadPhoto.php";
+    public static final String changeInfoIp=DestinationIp+"changeInfo.php";
 
     public static final String acceptRequestIp=DestinationIp+"acceptRequest.php";
     public static final String cancelRequestIp=DestinationIp+"cancelRequest.php";

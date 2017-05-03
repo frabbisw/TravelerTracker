@@ -92,6 +92,8 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
         ISystem.saveDeviceLocationInCache(getApplicationContext(), new DeviceLocation(location.getLatitude(), location.getLongitude()));
 
+        Toast.makeText(getApplicationContext(), "Hello from hell", Toast.LENGTH_SHORT).show();
+
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         if(account!=null){
             account.setLatitude(mCurrentLocation.getLatitude());

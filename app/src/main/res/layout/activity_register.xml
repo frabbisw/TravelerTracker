@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="Profile Name"
-        android:inputType="text"
+        android:inputType="textPersonName"
         android:textSize="16sp"
         android:gravity="center_vertical"
         android:orientation="vertical"

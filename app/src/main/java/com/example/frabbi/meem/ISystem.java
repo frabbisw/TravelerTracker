@@ -678,6 +678,11 @@ public class ISystem
         Volley.newRequestQueue(context).add(imageRequest);
     }
 
+    public static void updateInfo()
+    {
+
+    }
+
     private static void setDefaults(String key, String value, Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
