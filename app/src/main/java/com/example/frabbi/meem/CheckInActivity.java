@@ -67,27 +67,54 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new HomePosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
+        final CheckedInPosition position = new HomePosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
 
-        ISystem.checkIn(getApplicationContext(), position);
+        ISystem.checkIn(getApplicationContext(), position, new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                MarkerOptions mo = new MarkerOptions();
+                mo.position(new LatLng(position.getLatitude(), position.getLongitude()));
+                mo.title("Home");
+                mo.snippet(position.date);
+                mGoogleMap.addMarker(mo);
+            }
+        });
     }
     public void checkInAsWork(View view)
     {
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new WorkPosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
+        final CheckedInPosition position = new WorkPosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
 
-        ISystem.checkIn(getApplicationContext(), position);
+        ISystem.checkIn(getApplicationContext(), position, new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                MarkerOptions mo = new MarkerOptions();
+                mo.position(new LatLng(position.getLatitude(), position.getLongitude()));
+                mo.title("Work");
+                mo.snippet(position.date);
+                mGoogleMap.addMarker(mo);
+            }
+        });
     }
     public void checkInTemporary(View view)
     {
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         calendar = Calendar.getInstance();
         String dateTime = dateFormat.format(calendar.getTime());
-        CheckedInPosition position = new TemporaryPosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
+        final CheckedInPosition position = new TemporaryPosition(account.id, dateTime, account.getLatitude(), account.getLongitude());
 
-        ISystem.checkIn(getApplicationContext(), position);
+        ISystem.checkIn(getApplicationContext(), position, new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                MarkerOptions mo = new MarkerOptions();
+                mo.position(new LatLng(position.getLatitude(), position.getLongitude()));
+                mo.title("Temporary");
+                mo.snippet(position.date);
+                mGoogleMap.addMarker(mo);
+            }
+        });
     }
 
     @Override
@@ -113,7 +140,6 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
 
         new Thread()
         {
-
             @Override
             public void run()
             {
@@ -139,7 +165,8 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
                         {
                             MarkerOptions mo = new MarkerOptions();
                             mo.position(new LatLng(cip.getLatitude(),cip.getLongitude()));
-                            mo.title(cip.date);
+                            mo.title(cip.type);
+                            mo.snippet(cip.date);
 
                             mGoogleMap.addMarker(mo);
                         }
@@ -164,6 +191,5 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
                 }
             }
         }.start();
-
     }
 }

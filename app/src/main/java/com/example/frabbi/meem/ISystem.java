@@ -135,7 +135,7 @@ public class ISystem
 
         Volley.newRequestQueue(activity.getApplicationContext()).add(request);
     }
-    public static void checkIn(Context context, final CheckedInPosition position)
+    public static void checkIn(Context context, final CheckedInPosition position, final VolleyCallBack volleyCallBack)
     {
         Log.e("Checkin","trying");
         String url = Constants.CheckinIp;
@@ -144,7 +144,8 @@ public class ISystem
                 {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("CI",response);
+                        volleyCallBack.success(response);
+                        //Log.e("CI",response);
                     }
                 },
                 new Response.ErrorListener()
@@ -678,9 +679,37 @@ public class ISystem
         Volley.newRequestQueue(context).add(imageRequest);
     }
 
-    public static void updateInfo()
+    public static void updateInfo(Context context, final String id, final String name, final String password, final VolleyCallBack volleyCallBack)
     {
+        String url = Constants.changeInfoIp;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        volleyCallBack.success(response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
+                    }
+                })
+        {
+            protected Map<String,String> getParams()
+            {
+                Map <String, String> values = new HashMap<String, String>();
+                values.put(Constants.ConstantId,id);
+                values.put(Constants.ConstantName,name);
+                values.put(Constants.ConstantPassword,password);
+
+                return values;
+            }
+        };
+        Volley.newRequestQueue(context).add(request);
     }
 
     private static void setDefaults(String key, String value, Context context)
