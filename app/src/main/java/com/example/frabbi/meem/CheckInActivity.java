@@ -180,6 +180,9 @@ public class CheckInActivity extends BottomBarActivity implements OnMapReadyCall
                         public void run() {
                             Account myAccount = ISystem.loadAccountFromCache(getApplicationContext());
                             presentMarker.setPosition(new LatLng(myAccount.getLatitude(), myAccount.getLongitude()));
+
+                            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(presentMarker.getPosition()));
+                            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
                         }
                     });
 

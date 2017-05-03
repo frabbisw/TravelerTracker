@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_action_home"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="149dp"
         android:onClick="checkInAsHome"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -28,12 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_action_work"
+        android:onClick="checkInAsWork"
         android:layout_below="@+id/floatHome"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="checkInAsWork"/>
+        android:layout_marginTop="24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatTemp"
@@ -41,11 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_action_temp"
+        android:layout_marginTop="27dp"
+        android:onClick="checkInTemporary"
         android:layout_below="@+id/floatWork"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="checkInTemporary"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

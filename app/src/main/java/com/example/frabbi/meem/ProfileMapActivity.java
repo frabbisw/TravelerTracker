@@ -111,7 +111,13 @@ public class ProfileMapActivity extends BottomBarActivity implements OnMapReadyC
 
                     if(checkedInPositions.size()>0)
                     {
-                        mGoogleMap.clear();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mGoogleMap.clear();
+                            }
+                        });
+
                         for (final CheckedInPosition cip : checkedInPositions) {
                             runOnUiThread(new Runnable() {
                                 @Override
