@@ -109,38 +109,42 @@ public class ProfileMapActivity extends BottomBarActivity implements OnMapReadyC
                     Log.e("loading", i + "");
                 }
 
-                for (final CheckedInPosition cip : checkedInPositions) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(new LatLng(cip.getLatitude(), cip.getLongitude()));
+                    if(checkedInPositions.size()>0)
+                    {
+                        mGoogleMap.clear();
+                        for (final CheckedInPosition cip : checkedInPositions) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(new LatLng(cip.getLatitude(), cip.getLongitude()));
 
-                            String str [] = cip.date.split(" ");
+                                    String str[] = cip.date.split(" ");
 
-                            markerOptions.title(str[0]);
-                            markerOptions.snippet(str[1]);
+                                    markerOptions.title(str[0]);
+                                    markerOptions.snippet(str[1]);
 
-                            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(customBitmap(cip)));
-                            markerOptions.anchor(.5f, 1f);
+                                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(customBitmap(cip)));
+                                    markerOptions.anchor(.5f, 1f);
 
-                            mGoogleMap.addMarker(markerOptions);
+                                    mGoogleMap.addMarker(markerOptions);
+                                }
+                            });
                         }
-                    });
-                }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(checkedInPositions.get(checkedInPositions.size()-1).getPosition()));
-                            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-                        }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(checkedInPositions.get(checkedInPositions.size() - 1).getPosition()));
+                                mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                            }
+                        });
 
-                try {
-                    Thread.sleep(30 * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                        try {
+                            Thread.sleep(30 * 1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
             }
             }
         }.start();

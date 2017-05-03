@@ -63,14 +63,14 @@ public class SettingsActivity extends BottomBarActivity {
                     break;
 
                 case R.id.change_password:
-                    changePassword();
+                    //changePassword();
                     confirmnewpassword.setVisibility(View.VISIBLE);
                     break;
 
-                case R.id.confirm_changed_password:
+                /*case R.id.confirm_changed_password:
                     matchPassword();
                     break;
-
+*/
             }
         }
 
@@ -136,30 +136,33 @@ public class SettingsActivity extends BottomBarActivity {
 
     protected void saveNewChange()
     {
-        //uploadPhoto();
-        /*
-        SharedPreferences sp = getSharedPreferences("ProfileName", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("ProfileName", geteditname.getText().toString());
-        editor.commit();
+        Account account = ISystem.loadAccountFromCache(getApplicationContext());
 
-        Toast.makeText(this, "Changes Saved !", Toast.LENGTH_SHORT).show();
-        return;
-        */
-    }
+        String changedName=account.getName();
+        String changedPass=account.password;
 
-    private void matchPassword() {
-        if(!confirmnewpassword.getText().toString().equals(getnewpassword.getText().toString())){
-            Toast.makeText(this, "Password not mathced. Try again", Toast.LENGTH_SHORT).show();
+        if(geteditname.getText().toString().isEmpty() && getnewpassword.getText().toString().isEmpty())
             return;
+
+        if(!geteditname.getText().toString().isEmpty()) changedName=geteditname.getText().toString();
+        if(!getnewpassword.getText().toString().isEmpty() && matchPassword()) changedPass=getnewpassword.getText().toString();
+
+        ISystem.updateInfo(getApplicationContext(), account.getId(), changedName, changedPass, new VolleyCallBack() {
+            @Override
+            public void success(String response) {
+                Toast.makeText(getApplicationContext(), "Changes Saved !", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private boolean matchPassword() {
+        if(!confirmnewpassword.getText().toString().equals(getnewpassword.getText().toString())){
+            Toast.makeText(this, "Password not matched. Try again", Toast.LENGTH_SHORT).show();
+            return false;
         }
+
+        return true;
     }
-
-
-    protected void changePassword() {
-
-    }
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     protected void logoutFromAccount() {

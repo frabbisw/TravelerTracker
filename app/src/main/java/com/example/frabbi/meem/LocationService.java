@@ -94,7 +94,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
         //Toast.makeText(getApplicationContext(), "Hello from hell", Toast.LENGTH_SHORT).show();
 
-        Log.e("location","Hello");
+        //Log.e("location","Hello");
 
         Account account = ISystem.loadAccountFromCache(getApplicationContext());
         if(account!=null){
