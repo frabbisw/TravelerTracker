@@ -146,5 +146,4 @@ public class ProfileActivity extends BottomBarActivity {
         });
 
     }
-
 }
